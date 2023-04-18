@@ -1,4 +1,3 @@
-
 namespace RentACar.WebAPI
 {
     public class Program
@@ -26,7 +25,6 @@ namespace RentACar.WebAPI
             app.UseHttpsRedirection();
 
             app.UseAuthorization();
-
 
             app.MapControllers();
 
