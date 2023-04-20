@@ -44,6 +44,8 @@ namespace RentACar.WebAPI.Database
                 x.Property(x => x.Id).IsRequired();
                 x.Property(x => x.Name).IsRequired().HasMaxLength(100);
                 x.Property(x => x.PostalCode).IsRequired().HasMaxLength(20);
+                x.Property(x => x.ParkingSpaces).IsRequired().HasMaxLength(100000);
+                x.Property(x => x.ParkedCars).IsRequired();
                 x.HasMany(x => x.Reservations).WithOne(i => i.PickupLocation).IsRequired(false);
                 x.HasMany(x => x.Reservations).WithOne(i => i.DropoffLocation).IsRequired(false);
             });
@@ -54,11 +56,20 @@ namespace RentACar.WebAPI.Database
                 x.Property(x => x.Id).IsRequired();
                 x.Property(x => x.StartDate).IsRequired();
                 x.Property(x => x.EndDate).IsRequired();
-                x.Property(x => x.TotalCost).IsRequired();
                 x.Property(x => x.User).IsRequired();
                 x.Property(x => x.Car).IsRequired();
                 x.Property(x => x.PickupLocation).IsRequired();
                 x.Property(x => x.DropoffLocation).IsRequired();
+                x.Property(x => x.Payment).IsRequired();
+                x.HasOne(x => x.Payment).WithOne(i => i.Reservation);
+            });
+
+            modelBuilder.Entity<Payment>(x =>
+            {
+                x.HasKey(x => x.Id);
+                x.Property(x => x.Id).IsRequired();
+                x.Property(x => x.Amount).IsRequired();
+                x.Property(x => x.Date).IsRequired();
             });
 
             modelBuilder.Entity<Car>(x =>

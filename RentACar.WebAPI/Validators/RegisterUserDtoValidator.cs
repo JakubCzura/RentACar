@@ -3,20 +3,24 @@ using RentACar.WebAPI.Models.Dtos;
 
 namespace RentACar.WebAPI.Validators
 {
-    public class RegisterUserDtoValidator : AbstractValidator<MakeReservationDto>
+    public class RegisterUserDtoValidator : AbstractValidator<RegisterUserDto>
     {
         public RegisterUserDtoValidator()
         {
-            RuleFor(x => x.StartDate)
-               .NotEmpty().WithMessage("Start date can't be empty");
+            RuleFor(x => x.Name)
+               .NotEmpty().WithMessage("Name can't be empty");
 
-            RuleFor(x => x.EndDate)
-                .NotEmpty().WithMessage("End date can't be empty");
+            RuleFor(x => x.Surname)
+                .NotEmpty().WithMessage("Surname can't be empty");
 
+            RuleFor(x => x.Email)
+                .NotEmpty().WithMessage("Email can't be empty");
 
-            RuleFor(x => x.TotalCost)
-                .NotEmpty().WithMessage("Total cost can't be empty")
-                .GreaterThan(0).WithMessage("Total cost must be greater than 0");
+            RuleFor(x => x.Password)
+             .NotEmpty().WithMessage("Password can't be empty");
+
+            RuleFor(x => x.PhoneNumber)
+            .NotEmpty().WithMessage("Phone number can't be empty");
         }
     }
 }

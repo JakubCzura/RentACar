@@ -3,9 +3,9 @@ using RentACar.WebAPI.Models.Dtos;
 
 namespace RentACar.WebAPI.Validators
 {
-    public class MakeReservation : AbstractValidator<MakeReservationDto>
+    public class MakeReservationDtoValidator : AbstractValidator<MakeReservationDto>
     {
-        public MakeReservation()
+        public MakeReservationDtoValidator()
         {
             RuleFor(x => x.StartDate)
                .NotEmpty().WithMessage("Start date can't be empty");
