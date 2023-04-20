@@ -12,6 +12,8 @@
 
         public string Password { get; set; } = string.Empty;
 
-        public ICollection<Reservation> Reservations { get; set; } = new List<Reservation>();
+        public string PhoneNumber { get; set; } = string.Empty;
+
+        public ICollection<Reservation>? Reservations { get; set; } = new List<Reservation>();
     }
 }

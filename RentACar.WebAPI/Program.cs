@@ -1,3 +1,6 @@
+using Microsoft.EntityFrameworkCore;
+using RentACar.WebAPI.Database;
+
 namespace RentACar.WebAPI
 {
     public class Program
@@ -12,6 +15,8 @@ namespace RentACar.WebAPI
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+
+            builder.Services.AddDbContext<RentACarDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("RentACarDbContextConnectionString")));
 
             var app = builder.Build();
 

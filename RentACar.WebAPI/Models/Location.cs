@@ -8,6 +8,8 @@
 
         public string PostalCode { get; set; } = string.Empty;
 
-        public ICollection<ParkingPlace> ParkingPlaces { get; set; } = new List<ParkingPlace>();
+        public City City { get; set; } = new();
+
+        public ICollection<Reservation>? Reservations{ get; set; } = new List<Reservation>();
     }
 }
