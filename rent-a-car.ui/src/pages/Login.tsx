@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Navigate, redirect } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import NavigationButton from "./NavigationButton";
+import NavigationButton from "../components/NavigationButton";
 import corsConfig from "../helpers/CORSConfig";
 
 interface LogInUserDto {

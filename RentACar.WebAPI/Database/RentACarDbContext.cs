@@ -91,10 +91,6 @@ namespace RentACar.WebAPI.Database
                 x.Property(x => x.Id).IsRequired();
                 x.Property(x => x.Make).IsRequired().HasMaxLength(100);
                 x.Property(x => x.Model).IsRequired().HasMaxLength(20);
-                x.Property(x => x.Description).IsRequired().HasMaxLength(100);
-                x.Property(x => x.Color).IsRequired().HasMaxLength(20);
-                x.Property(x => x.Capacity).IsRequired().HasMaxLength(100);
-                x.Property(x => x.ManufactureYear).IsRequired();
                 x.Property(x => x.DailyRate).IsRequired();
                 x.Property(x => x.Kind).IsRequired().HasMaxLength(100);
                 x.Property(x => x.IsAvailable).IsRequired();

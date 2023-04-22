@@ -4,9 +4,9 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import Login from './components/Login';
+import Login from './pages/Login';
 import Reservation from './pages/Reservation';
-import Registration from './components/Registration';
+import Registration from './pages/Registration';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
