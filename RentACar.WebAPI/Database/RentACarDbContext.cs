@@ -14,8 +14,10 @@ namespace RentACar.WebAPI.Database
         public DbSet<User> Users { get; set; }
         public DbSet<City> Cities { get; set; }
         public DbSet<Car> Cars { get; set; }
-        public DbSet<Location> Locations { get; set; }
+        public DbSet<PickupLocation> PickupLocations { get; set; }
+        public DbSet<DropoffLocation> DropoffLocations { get; set; }
         public DbSet<Reservation> Reservations { get; set; }
+        public DbSet<Payment> Payments { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -38,7 +40,18 @@ namespace RentACar.WebAPI.Database
                 x.HasMany(x => x.Locations).WithOne(i => i.City);
             });
 
-            modelBuilder.Entity<Location>(x =>
+            modelBuilder.Entity<DropoffLocation>(x =>
+            {
+                x.HasKey(x => x.Id);
+                x.Property(x => x.Id).IsRequired();
+                x.Property(x => x.Name).IsRequired().HasMaxLength(100);
+                x.Property(x => x.PostalCode).IsRequired().HasMaxLength(20);
+                x.Property(x => x.ParkingSpaces).IsRequired().HasMaxLength(100000);
+                x.Property(x => x.ParkedCars).IsRequired();
+                x.HasMany(x => x.Reservations).WithOne(i => i.DropoffLocation).IsRequired(false);
+            });
+
+            modelBuilder.Entity<PickupLocation>(x =>
             {
                 x.HasKey(x => x.Id);
                 x.Property(x => x.Id).IsRequired();
@@ -47,7 +60,6 @@ namespace RentACar.WebAPI.Database
                 x.Property(x => x.ParkingSpaces).IsRequired().HasMaxLength(100000);
                 x.Property(x => x.ParkedCars).IsRequired();
                 x.HasMany(x => x.Reservations).WithOne(i => i.PickupLocation).IsRequired(false);
-                x.HasMany(x => x.Reservations).WithOne(i => i.DropoffLocation).IsRequired(false);
             });
 
             modelBuilder.Entity<Reservation>(x =>
@@ -56,12 +68,12 @@ namespace RentACar.WebAPI.Database
                 x.Property(x => x.Id).IsRequired();
                 x.Property(x => x.StartDate).IsRequired();
                 x.Property(x => x.EndDate).IsRequired();
-                x.Property(x => x.User).IsRequired();
-                x.Property(x => x.Car).IsRequired();
-                x.Property(x => x.PickupLocation).IsRequired();
-                x.Property(x => x.DropoffLocation).IsRequired();
-                x.Property(x => x.Payment).IsRequired();
-                x.HasOne(x => x.Payment).WithOne(i => i.Reservation);
+                //x.Property(x => x.User).IsRequired();
+                //x.Property(x => x.Car).IsRequired();
+                //x.Property(x => x.PickupLocation).IsRequired();
+                //x.Property(x => x.DropoffLocation).IsRequired();
+                //x.Property(x => x.Payment).IsRequired();
+                x.HasOne(x => x.Payment).WithOne(i => i.Reservation).HasForeignKey<Reservation>(x => x.PaymentId).IsRequired();
             });
 
             modelBuilder.Entity<Payment>(x =>
@@ -70,6 +82,7 @@ namespace RentACar.WebAPI.Database
                 x.Property(x => x.Id).IsRequired();
                 x.Property(x => x.Amount).IsRequired();
                 x.Property(x => x.Date).IsRequired();
+                //x.HasOne(x => x.Reservation).WithOne(i => i.Payment).IsRequired();
             });
 
             modelBuilder.Entity<Car>(x =>

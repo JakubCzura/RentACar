@@ -7,5 +7,6 @@
         public DateTime Date { get; set; }
 
         public Reservation Reservation { get; set; } = new();
+        public int ReservationId { get; set; }
     }
 }

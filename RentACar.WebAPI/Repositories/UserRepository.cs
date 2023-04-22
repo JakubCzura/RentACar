@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using RentACar.WebAPI.Database;
 using RentACar.WebAPI.Models;
+using RentACar.WebAPI.Models.Dtos;
 using RentACar.WebAPI.Repositories.Interfaces;
 
 namespace RentACar.WebAPI.Repositories
@@ -22,6 +23,13 @@ namespace RentACar.WebAPI.Repositories
         public async Task<User> GetAsync(int id)
         {
             return await _rentACarDbContext.Users.FindAsync(id) ?? null!;
+        }
+
+        public async Task<User> GetByEmailAndPasswordAsync(LogInUserDto dto)
+        {
+            var user = await _rentACarDbContext.Users.FirstOrDefaultAsync(x => x.Email == dto.Email);
+           // return user;
+            return PasswordHasher.VerifyPassword(dto.Password, user!.Password) ? user : null!;
         }
 
         public async Task CreateAsync(User user)

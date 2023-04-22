@@ -12,10 +12,12 @@
 
         public Car Car { get; set; } = new();
 
-        public Location PickupLocation { get; set; } = new();
+        public PickupLocation PickupLocation { get; set; } = new();
 
-        public Location DropoffLocation { get; set; } = new();
+        public DropoffLocation DropoffLocation { get; set; } = new();
 
         public Payment Payment { get; set; } = new();
+
+        public int PaymentId { get; set; }
     }
 }

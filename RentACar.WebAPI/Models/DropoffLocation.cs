@@ -1,6 +1,6 @@
 ﻿namespace RentACar.WebAPI.Models
 {
-    public class Location
+    public class DropoffLocation
     {
         public int Id { get; set; }
 
@@ -14,6 +14,6 @@
 
         public City City { get; set; } = new();
 
-        public ICollection<Reservation>? Reservations{ get; set; } = new List<Reservation>();
+        public ICollection<Reservation>? Reservations { get; set; } = new List<Reservation>();
     }
 }

@@ -25,6 +25,11 @@ namespace RentACar.WebAPI.Services
             return await _userRepository.GetAsync(id);
         }
 
+        public async Task<User> GetByEmailAndPasswordAsync(LogInUserDto dto)
+        {
+            return await _userRepository.GetByEmailAndPasswordAsync(dto);
+        }
+
         public async Task CreateAsync(RegisterUserDto dto)
         {
             User user = new()

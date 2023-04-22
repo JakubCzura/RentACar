@@ -6,6 +6,6 @@
 
         public string Name { get; set; } = string.Empty;
 
-        public ICollection<Location> Locations { get; set; } = new List<Location>();
+        public ICollection<PickupLocation> Locations { get; set; } = new List<PickupLocation>();
     }
 }
