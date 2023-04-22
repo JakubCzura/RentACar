@@ -19,6 +19,21 @@ namespace RentACar.WebAPI
         {
             var builder = WebApplication.CreateBuilder(args);
 
+            var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
+
+            builder.Services.AddCors(options =>
+            {
+                options.AddPolicy(name: MyAllowSpecificOrigins,
+                    policy =>
+                    {
+                        policy.WithOrigins("http://localhost:3000", "https://localhost:7216/Account/Login")
+                        .AllowAnyHeader()
+                        .AllowAnyOrigin()
+                        .AllowAnyMethod(); // add the allowed origins
+                    });
+            });
+
+
             // Add services to the container.
 
             builder.Services.AddControllers();
@@ -48,7 +63,7 @@ namespace RentACar.WebAPI
             app.UseAuthorization();
 
             app.MapControllers();
-
+            app.UseCors(MyAllowSpecificOrigins);
             app.Run();
         }
     }
