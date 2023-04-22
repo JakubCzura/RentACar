@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Navigate, redirect } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import NavigationButton from "./NavigationButton";
 
 interface LogInUserDto {
   email: string;
@@ -22,8 +23,11 @@ const config = {
       'Accept': 'application/json, text/plain, */*'
   }}
 
-const Login = () => {
+  
 
+const Login = () => {
+  
+  
   
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -37,7 +41,7 @@ const Login = () => {
       const { userId } = response.data;
       if (userId) {      
         localStorage.setItem("authenticated", "true");
-        localStorage.setItem("userID", userId);
+        localStorage.setItem("userId", userId);
         navigate("/reservation");
       } else {
         alert("Login failed. Please try again.");
@@ -49,20 +53,29 @@ const Login = () => {
   };
   
 
-
   return (
     <div>
       <form onSubmit={logIn}>
+        <h2>
+          Log in
+        </h2>
+        <br/>
         <label>
           Email:
           <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
         </label>
+        <br/>
         <label>
           Password:
           <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
         </label>
+        <br/>
         <button type="submit">Log In</button>
-      </form>
+      </form>      
+      <h4>
+          Don't have account?
+      </h4>
+      <NavigationButton path="/register" label="Register" />
     </div>
   );
 
