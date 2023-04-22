@@ -50,6 +50,10 @@ namespace RentACar.WebAPI
             builder.Services.AddScoped<ICarService, CarService>();
             builder.Services.AddScoped<IReservationRepository, ReservationRepository>();
             builder.Services.AddScoped<IReservationService, ReservationService>();
+            builder.Services.AddScoped<IPickupLocationRepository, PickupLocationRepository>();
+            builder.Services.AddScoped<IPickupLocationService, PickupLocationService>();
+            builder.Services.AddScoped<IDropoffLocationRepository, DropoffLocationRepository>();
+            builder.Services.AddScoped<IDropoffLocationService, DropoffLocationService>();
             builder.Services.AddScoped<IValidator<RegisterUserDto>, RegisterUserDtoValidator>();
             builder.Services.AddScoped<IValidator<LogInUserDto>, LogInUserDtoValidator>();
 

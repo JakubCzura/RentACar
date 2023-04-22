@@ -8,6 +8,8 @@
 
         public DateTime EndDate { get; set; }
 
+        public decimal TotalCost{ get; set; }
+
         public User User { get; set; } = new();
 
         public Car Car { get; set; } = new();
@@ -15,9 +17,5 @@
         public PickupLocation PickupLocation { get; set; } = new();
 
         public DropoffLocation DropoffLocation { get; set; } = new();
-
-        public Payment Payment { get; set; } = new();
-
-        public int PaymentId { get; set; }
     }
 }

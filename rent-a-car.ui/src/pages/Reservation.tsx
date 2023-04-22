@@ -7,7 +7,19 @@ import axios from 'axios';
 
 const Reservation = () => {
 
-type Car =
+interface PickupLocation
+{
+    id: number;
+    name: string;
+}
+
+interface DropoffLocation
+{
+    id: number;
+    name: string;
+}
+
+interface Car
 {
     id: number;
     make: string;
@@ -19,19 +31,41 @@ type Car =
 }
 
 interface MakeReservationDto {
-    startDate: Date,
-    endDate: Date,
-    car: Car
+    startDate: Date | null,
+    endDate: Date | null,
+    car: Car | undefined
 }
 
     const [startDate, setStartDate] = useState<Date | null>(new Date());
     const [endDate, setEndDate] = useState<Date | null>(new Date());
     const [cars, setCars] = useState<Car[]>([]);
+    const [pickupLocations, setPickupLocations] = useState<PickupLocation[]>([]);
+    const [dropoffLocations, setDropoffLocations] = useState<DropoffLocation[]>([]);
     const [selectedCar, setSelectedCar] = useState<Car>();
+    const [selectedPickupLocation, setSelectedPickupLocation] = useState<PickupLocation>();
+    const [selectedDropoffLocation, setSelectedDropoffLocation] = useState<DropoffLocation>();
+
+    const r:MakeReservationDto = {
+        startDate : startDate,
+        endDate : endDate,
+        car: selectedCar
+    }
 
     useEffect(() => {
         axios.get("https://localhost:7216/car").then((response) => {
             setCars(response.data);
+        }).catch(error => console.error(error));;
+    }, []);
+
+    useEffect(() => {
+        axios.get("https://localhost:7216/location/getPickupLocations").then((response) => {
+            setPickupLocations(response.data);
+        }).catch(error => console.error(error));;
+    }, []);
+
+    useEffect(() => {
+        axios.get("https://localhost:7216/location/getDropoffLocations").then((response) => {
+            setDropoffLocations(response.data);
         }).catch(error => console.error(error));;
     }, []);
 
@@ -40,6 +74,18 @@ interface MakeReservationDto {
         const carId = event.target.value;
         const selected = cars.find((car) => car.id === parseInt(carId));
         setSelectedCar(selected);
+    }
+
+    function handlePickupLocationSelection(event: any) {
+        const locationId = event.target.value;
+        const selected = pickupLocations.find((pickupLocation) => pickupLocation.id === parseInt(locationId));
+        setSelectedPickupLocation(selected);
+    }
+
+    function handleDropoffLocationSelection(event: any) {
+        const locationId = event.target.value;
+        const selected = dropoffLocations.find((dropoffLocation) => dropoffLocation.id === parseInt(locationId));
+        setSelectedDropoffLocation(selected);
     }
 
     if (localStorage.getItem("authenticated") != "true") {
@@ -77,6 +123,40 @@ interface MakeReservationDto {
                         <p>Daily Rate: {selectedCar.dailyRate}</p>
                         <p>Kind: {selectedCar.kind}</p>
                         <p>Is Available: {selectedCar.isAvailable ? "Yes" : "No"}</p>
+                    </div>
+                )}
+                <div>
+                    <label htmlFor="pickupLocation-select">Choose pickup location:</label>
+                    <select id="pickupLocation-select" onChange={handlePickupLocationSelection}>
+                        <option value="">Select pickup location</option>
+                        {pickupLocations.map((location) => (
+                            <option key={location.id} value={location.id}>
+                                {location.name}
+                            </option>
+                        ))}
+                    </select>
+                </div>
+                {selectedPickupLocation && (
+                    <div>
+                        <h3>Selected pickedup location</h3>
+                        <p>Name: {selectedPickupLocation.name}</p>
+                    </div>
+                )}
+                <div>
+                    <label htmlFor="dropoffLocation-select">Choose dropoff location:</label>
+                    <select id="dropoffLocation-select" onChange={handleDropoffLocationSelection}>
+                        <option value="">Select dropoff location</option>
+                        {dropoffLocations.map((location) => (
+                            <option key={location.id} value={location.id}>
+                                {location.name}
+                            </option>
+                        ))}
+                    </select>
+                </div>
+                {selectedDropoffLocation && (
+                    <div>
+                        <h3>Selected dropoff location</h3>
+                        <p>Name: {selectedDropoffLocation.name}</p>
                     </div>
                 )}
             </div>

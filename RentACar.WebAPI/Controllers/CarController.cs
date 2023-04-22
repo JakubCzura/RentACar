@@ -7,11 +7,11 @@ namespace RentACar.WebAPI.Controllers
 {
     [Route("[controller]")]
     [ApiController]
-    public class CarsController : ControllerBase
+    public class CarController : ControllerBase
     {
         private readonly ICarService _carService;
 
-        public CarsController(ICarService carService)
+        public CarController(ICarService carService)
         {
             _carService = carService;
         }
