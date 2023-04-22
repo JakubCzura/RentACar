@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { Navigate, redirect } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import corsConfig from "../helpers/CORSConfig";
 
 interface RegisterUserDto {
     name: string;
@@ -17,50 +17,35 @@ interface RegisterResponse {
     email: string;
 }
 
-const config = {
-  headers: {
-      'Content-Type': 'application/json',
-      'Access-Control-Allow-Headers': 'Origin, Methods, Content-Type, X-Auth-Token',
-      'Access-Control-Allow-Origin': '*',
-      'Access-Control-Allow-Methods': ' GET, POST, PATCH, PUT, DELETE, OPTIONS',
-      'Access-Control-Allow-Credentials': 'false',
-      'Accept': 'application/json, text/plain, */*'
-  }}
-
 const Registration = () => {
+    const config:any = corsConfig;
     const [name, setName] = useState("");
     const [surname, setSurname] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [phoneNumber, setPhoneNumber] = useState("");
-    const [message, setMessage] = useState('');
-  const navigate = useNavigate();
-  const logIn = async (event: React.FormEvent<HTMLFormElement>) => {
+    const navigate = useNavigate();
+    
+    const logIn = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const registerData: RegisterUserDto = {name, surname, email, password, phoneNumber };
      try {
       const response = await axios.post<RegisterResponse>("https://localhost:7216/account/register", registerData, config);
       if (response.status == 200 || response.status == 201) {      
-        //localStorage.setItem("authenticated", "true");
-        //localStorage.setItem("userId", userId);
         navigate("/login");
-        setMessage('You were registered!');
+        alert('You were registered!');
       } else {
-        alert("Login failed. Please try again.");
+        alert("Registration failed. Please try again.");
       }
     } catch (error) {
       console.error(error);
-      alert("An error occurred while logging in. Please try again later.");
+      alert("An error occurred while registration. Please try again later.");
     }
   };
-  
-
 
   return (
     <div>
       <form onSubmit={logIn}>
-      {message && <p>{message}</p>} {/* render message if state is not empty */}
-        <br/>
         <h2>
             Register
         </h2>
@@ -94,8 +79,6 @@ const Registration = () => {
       </form>
     </div>
   );
-
-
 };
 
 export default Registration;

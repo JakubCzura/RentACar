@@ -3,6 +3,7 @@ import { Navigate, redirect } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import NavigationButton from "./NavigationButton";
+import corsConfig from "../helpers/CORSConfig";
 
 interface LogInUserDto {
   email: string;
@@ -13,22 +14,8 @@ interface LoginResponse {
   userId: string;
 }
 
-const config = {
-  headers: {
-      'Content-Type': 'application/json',
-      'Access-Control-Allow-Headers': 'Origin, Methods, Content-Type, X-Auth-Token',
-      'Access-Control-Allow-Origin': '*',
-      'Access-Control-Allow-Methods': ' GET, POST, PATCH, PUT, DELETE, OPTIONS',
-      'Access-Control-Allow-Credentials': 'false',
-      'Accept': 'application/json, text/plain, */*'
-  }}
-
-  
-
 const Login = () => {
-  
-  
-  
+  const config:any = corsConfig;
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -52,7 +39,6 @@ const Login = () => {
     }
   };
   
-
   return (
     <div>
       <form onSubmit={logIn}>
@@ -78,8 +64,6 @@ const Login = () => {
       <NavigationButton path="/register" label="Register" />
     </div>
   );
-
-
 };
 
 export default Login;
