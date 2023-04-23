@@ -6,12 +6,12 @@
 
         public DateTime EndDate { get; set; }
 
-        public decimal TotalCost { get; set; }
+        public int UserId { get; set; }
 
-        public Car Car { get; set; } = new();
+        public int CarId { get; set; }
 
-        public PickupLocation PickupLocation { get; set; } = new();
+        public int PickupLocationId { get; set; }
 
-        public DropoffLocation DropoffLocation { get; set; } = new();
+        public int DropoffLocationId { get; set; }
     }
 }

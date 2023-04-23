@@ -16,5 +16,10 @@ namespace RentACar.WebAPI.Services
         {
             return await _dropoffLocationRepository.GetAllAsync();
         }
+
+        public async Task<DropoffLocation> GetAsync(int id)
+        {
+            return await _dropoffLocationRepository.GetAsync(id);
+        }
     }
 }

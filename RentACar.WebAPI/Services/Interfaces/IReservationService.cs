@@ -1,4 +1,5 @@
 ﻿using RentACar.WebAPI.Models;
+using RentACar.WebAPI.Models.Dtos;
 
 namespace RentACar.WebAPI.Services.Interfaces
 {
@@ -6,7 +7,7 @@ namespace RentACar.WebAPI.Services.Interfaces
     {
         Task<IEnumerable<Reservation>> GetAllAsync();
         Task<Reservation> GetAsync(int id);
-        Task CreateAsync(Reservation user);
+        Task CreateAsync(MakeReservationDto user);
         Task UpdateAsync(Reservation user);
         Task DeleteAsync(int id);
     }

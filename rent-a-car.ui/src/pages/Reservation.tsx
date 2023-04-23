@@ -33,7 +33,10 @@ interface Car
 interface MakeReservationDto {
     startDate: Date | null,
     endDate: Date | null,
-    car: Car | undefined
+    carId?: number,
+    pickupLocationId?: number,
+    dropoffLocationId?: number,
+    userId?: number
 }
 
     const [startDate, setStartDate] = useState<Date | null>(new Date());
@@ -48,29 +51,47 @@ interface MakeReservationDto {
     const r:MakeReservationDto = {
         startDate : startDate,
         endDate : endDate,
-        car: selectedCar
+        carId: selectedCar?.id,
+        pickupLocationId: selectedPickupLocation?.id,
+        dropoffLocationId: selectedDropoffLocation?.id,
+        userId : Number(localStorage.getItem("userId"))
     }
 
     useEffect(() => {
-        axios.get("https://localhost:7216/car").then((response) => {
-            setCars(response.data);
-        }).catch(error => console.error(error));;
+        // axios.get("https://localhost:7216/getAllAvailable").then((response) => {
+        //     setCars(response.data);
+        // }).catch(error => console.error(error));;
+
+        (async() => {
+            const { data } = await axios.get<Car[]>("https://localhost:7216/car");
+            setCars(data);
+        })()
     }, []);
 
     useEffect(() => {
-        axios.get("https://localhost:7216/location/getPickupLocations").then((response) => {
-            setPickupLocations(response.data);
-        }).catch(error => console.error(error));;
+        // axios.get("https://localhost:7216/location/getPickupLocations").then((response) => {
+        //     setPickupLocations(response.data);
+        // }).catch(error => console.error(error));;
+
+        (async() => {
+            const { data } = await axios.get<PickupLocation[]>("https://localhost:7216/location/getPickupLocations");
+            setPickupLocations(data);
+        })()
     }, []);
 
     useEffect(() => {
-        axios.get("https://localhost:7216/location/getDropoffLocations").then((response) => {
-            setDropoffLocations(response.data);
-        }).catch(error => console.error(error));;
+        // axios.get("https://localhost:7216/location/getDropoffLocations").then((response) => {
+        //     setDropoffLocations(response.data);
+        // }).catch(error => console.error(error));
+
+        (async() => {
+            const { data } = await axios.get<DropoffLocation[]>("https://localhost:7216/location/getDropoffLocations");
+            setDropoffLocations(data);
+        })()
     }, []);
 
 
-    function handleCarSelection(event: any) {
+    function handleCarSelection(event: React.ChangeEvent<HTMLSelectElement>) {
         const carId = event.target.value;
         const selected = cars.find((car) => car.id === parseInt(carId));
         setSelectedCar(selected);
