@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.33530.505
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RentACar.WebAPI", "RentACar.WebAPI\RentACar.WebAPI.csproj", "{4CBD230F-446E-42A7-A70B-AB9DCF44752D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RentACar.WebAPI", "RentACar.WebAPI\RentACar.WebAPI.csproj", "{4CBD230F-446E-42A7-A70B-AB9DCF44752D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RentACar.Tests", "RentACar.Tests\RentACar.Tests.csproj", "{534A43CD-5405-4B37-8E00-0F04AF423DEC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{4CBD230F-446E-42A7-A70B-AB9DCF44752D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4CBD230F-446E-42A7-A70B-AB9DCF44752D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4CBD230F-446E-42A7-A70B-AB9DCF44752D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{534A43CD-5405-4B37-8E00-0F04AF423DEC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{534A43CD-5405-4B37-8E00-0F04AF423DEC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{534A43CD-5405-4B37-8E00-0F04AF423DEC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{534A43CD-5405-4B37-8E00-0F04AF423DEC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
