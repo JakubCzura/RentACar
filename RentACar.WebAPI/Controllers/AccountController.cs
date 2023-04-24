@@ -1,11 +1,10 @@
 ﻿using FluentValidation;
+using FluentValidation.Results;
 using Microsoft.AspNetCore.Mvc;
 using RentACar.WebAPI.Database;
-using RentACar.WebAPI.Models.Dtos;
 using RentACar.WebAPI.Models;
+using RentACar.WebAPI.Models.Dtos;
 using RentACar.WebAPI.Services.Interfaces;
-using FluentValidation.Results;
-using RentACar.WebAPI.Validators;
 
 namespace RentACar.WebAPI.Controllers
 {
@@ -39,7 +38,6 @@ namespace RentACar.WebAPI.Controllers
             }
             return BadRequest("Can't log in, invalid credential");
         }
-
 
         [HttpPost]
         public async Task<IActionResult> Register([FromBody] RegisterUserDto dto)

@@ -1,6 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace RentACar.WebAPI.Models.Dtos
+﻿namespace RentACar.WebAPI.Models.Dtos
 {
     public class LogInUserDto
     {

@@ -1,6 +1,4 @@
-﻿using FluentValidation;
-using Microsoft.AspNetCore.Mvc;
-using RentACar.WebAPI.Models.Dtos;
+﻿using Microsoft.AspNetCore.Mvc;
 using RentACar.WebAPI.Services.Interfaces;
 
 namespace RentACar.WebAPI.Controllers
@@ -28,7 +26,7 @@ namespace RentACar.WebAPI.Controllers
         }
 
         [HttpGet]
-        [Route("/[action]")]
+        [Route("[action]")]
         public async Task<IActionResult> GetAllAvailable()
         {
             var cars = await _carService.GetAllAsync();

@@ -3,11 +3,8 @@ using RentACar.WebAPI.Models;
 
 namespace RentACar.WebAPI.Services.Interfaces
 {
-    public interface ICarService
+    public interface ICarService : ICrudService<Car>
     {
-        Task<IEnumerable<Car>> GetAllAsync();
         Task<IEnumerable<Car>> GetAllAvailableAsync();
-        Task<Car> GetAsync(int id);
-        Task UpdateAsync(Car car);
     }
 }

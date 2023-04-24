@@ -5,6 +5,7 @@ namespace RentACar.WebAPI.Services.Interfaces
     public interface IPickupLocationService
     {
         Task<IEnumerable<PickupLocation>> GetAllAsync();
+
         Task<PickupLocation> GetAsync(int id);
     }
 }

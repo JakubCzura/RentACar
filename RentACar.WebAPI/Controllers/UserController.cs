@@ -48,7 +48,7 @@ namespace RentACar.WebAPI.Controllers
             if (validation.IsValid)
             {
                 await _userService.CreateAsync(dto);
-                return CreatedAtAction(nameof(Post), new {dto.Name, dto.Surname, dto.Email});
+                return CreatedAtAction(nameof(Post), new { dto.Name, dto.Surname, dto.Email });
             }
             else
             {

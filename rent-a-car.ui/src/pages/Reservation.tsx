@@ -58,21 +58,13 @@ interface MakeReservationDto {
     }
 
     useEffect(() => {
-        // axios.get("https://localhost:7216/getAllAvailable").then((response) => {
-        //     setCars(response.data);
-        // }).catch(error => console.error(error));;
-
         (async() => {
-            const { data } = await axios.get<Car[]>("https://localhost:7216/car");
+            const { data } = await axios.get<Car[]>("https://localhost:7216/car/getAllAvailable");
             setCars(data);
         })()
     }, []);
 
     useEffect(() => {
-        // axios.get("https://localhost:7216/location/getPickupLocations").then((response) => {
-        //     setPickupLocations(response.data);
-        // }).catch(error => console.error(error));;
-
         (async() => {
             const { data } = await axios.get<PickupLocation[]>("https://localhost:7216/location/getPickupLocations");
             setPickupLocations(data);
@@ -80,10 +72,6 @@ interface MakeReservationDto {
     }, []);
 
     useEffect(() => {
-        // axios.get("https://localhost:7216/location/getDropoffLocations").then((response) => {
-        //     setDropoffLocations(response.data);
-        // }).catch(error => console.error(error));
-
         (async() => {
             const { data } = await axios.get<DropoffLocation[]>("https://localhost:7216/location/getDropoffLocations");
             setDropoffLocations(data);

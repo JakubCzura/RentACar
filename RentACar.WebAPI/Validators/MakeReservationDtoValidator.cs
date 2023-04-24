@@ -11,7 +11,7 @@ namespace RentACar.WebAPI.Validators
                .NotEmpty().WithMessage("Start date can't be empty");
 
             RuleFor(x => x.EndDate)
-                .NotEmpty().WithMessage("End date can't be empty");         
+                .NotEmpty().WithMessage("End date can't be empty");
         }
     }
 }

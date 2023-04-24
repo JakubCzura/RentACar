@@ -1,16 +1,14 @@
 ﻿using FluentValidation;
 using RentACar.WebAPI.Models;
 using RentACar.WebAPI.Models.Dtos;
-using RentACar.WebAPI.Repositories.Interfaces;
-using RentACar.WebAPI.Services;
 using RentACar.WebAPI.Services.Interfaces;
 
 namespace RentACar.WebAPI.Validators
 {
     public class RegisterUserDtoValidator : AbstractValidator<RegisterUserDto>
     {
-
         private readonly IUserService _userService;
+
         public RegisterUserDtoValidator(IUserService userService)
         {
             _userService = userService;

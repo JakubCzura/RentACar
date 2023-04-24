@@ -2,12 +2,7 @@
 
 namespace RentACar.WebAPI.Repositories.Interfaces
 {
-    public interface ICarRepository
+    public interface ICarRepository : ICrudRepository<Car>
     {
-        Task<IEnumerable<Car>> GetAllAsync();
-        Task<Car> GetAsync(int id);
-        Task CreateAsync(Car car);
-        Task UpdateAsync(Car car);
-        Task DeleteAsync(int id);
     }
 }

@@ -6,7 +6,7 @@ using RentACar.WebAPI.Services.Interfaces;
 
 namespace RentACar.WebAPI.Services
 {
-    public class ReservationService : IReservationService
+    public class ReservationService : CrudService<Reservation>, IReservationService
     {
         private readonly IReservationRepository _reservationRepository;
         private readonly IPickupLocationService _pickupLocationService;
@@ -14,23 +14,13 @@ namespace RentACar.WebAPI.Services
         private readonly ICarService _carService;
         private readonly IUserService _userService;
 
-        public ReservationService(IReservationRepository reservationRepository, IPickupLocationService pickupLocationService, IDropoffLocationService dropoffLocationService, ICarService carService, IUserService userService)
+        public ReservationService(IReservationRepository reservationRepository, IPickupLocationService pickupLocationService, IDropoffLocationService dropoffLocationService, ICarService carService, IUserService userService) : base(reservationRepository)
         {
             _reservationRepository = reservationRepository;
             _pickupLocationService = pickupLocationService;
             _dropoffLocationService = dropoffLocationService;
             _carService = carService;
             _userService = userService;
-        }
-
-        public async Task<IEnumerable<Reservation>> GetAllAsync()
-        {
-            return await _reservationRepository.GetAllAsync();
-        }
-
-        public async Task<Reservation> GetAsync(int id)
-        {
-            return await _reservationRepository.GetAsync(id);
         }
 
         public async Task CreateAsync(MakeReservationDto dto)
@@ -49,16 +39,6 @@ namespace RentACar.WebAPI.Services
             };
             await _carService.UpdateAsync(car);
             await _reservationRepository.CreateAsync(reservation);
-        }
-
-        public async Task UpdateAsync(Reservation reservation)
-        {
-            await _reservationRepository.UpdateAsync(reservation);
-        }
-
-        public async Task DeleteAsync(int id)
-        {
-            await _reservationRepository.DeleteAsync(id);
         }
     }
 }

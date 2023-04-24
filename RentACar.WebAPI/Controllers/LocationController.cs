@@ -1,10 +1,5 @@
-﻿using FluentValidation;
-using Microsoft.AspNetCore.Mvc;
-using RentACar.WebAPI.Database;
-using RentACar.WebAPI.Models.Dtos;
-using RentACar.WebAPI.Models;
+﻿using Microsoft.AspNetCore.Mvc;
 using RentACar.WebAPI.Services.Interfaces;
-using RentACar.WebAPI.Services;
 
 namespace RentACar.WebAPI.Controllers
 {

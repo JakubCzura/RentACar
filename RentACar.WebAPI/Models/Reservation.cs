@@ -8,7 +8,7 @@
 
         public DateTime EndDate { get; set; }
 
-        public decimal TotalCost{ get; set; }
+        public decimal TotalCost { get; set; }
 
         public User User { get; set; } = new();
 

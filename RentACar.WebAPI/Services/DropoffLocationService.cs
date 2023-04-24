@@ -1,25 +1,14 @@
 ﻿using RentACar.WebAPI.Models;
+using RentACar.WebAPI.Repositories;
 using RentACar.WebAPI.Repositories.Interfaces;
 using RentACar.WebAPI.Services.Interfaces;
 
 namespace RentACar.WebAPI.Services
 {
-    public class DropoffLocationService : IDropoffLocationService
+    public class DropoffLocationService : CrudService<DropoffLocation>, IDropoffLocationService
     {
-        private readonly IDropoffLocationRepository _dropoffLocationRepository;
-
-        public DropoffLocationService(IDropoffLocationRepository dropoffLocationRepository)
+        public DropoffLocationService(IDropoffLocationRepository dropoffLocationRepository) : base(dropoffLocationRepository)
         {
-            _dropoffLocationRepository = dropoffLocationRepository;
-        }
-        public async Task<IEnumerable<DropoffLocation>> GetAllAsync()
-        {
-            return await _dropoffLocationRepository.GetAllAsync();
-        }
-
-        public async Task<DropoffLocation> GetAsync(int id)
-        {
-            return await _dropoffLocationRepository.GetAsync(id);
         }
     }
 }
