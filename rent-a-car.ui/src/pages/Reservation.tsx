@@ -4,42 +4,46 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import axios from 'axios';
 import corsConfig from "../helpers/CORSConfig";
+import { PickupLocation } from "../models/PickupLocation";
+import { DropoffLocation } from "../models/DropoffLocation";
+import { Car } from "../models/Car";
+import { MakeReservationDto } from "../models/dtos/MakeReservationDto";
 
 
 const Reservation = () => {
 
-interface PickupLocation
-{
-    id: number;
-    name: string;
-}
+    // interface PickupLocation
+    // {
+    //     id: number;
+    //     name: string;
+    // }
 
-interface DropoffLocation
-{
-    id: number;
-    name: string;
-}
+    // interface DropoffLocation
+    // {
+    //     id: number;
+    //     name: string;
+    // }
 
-interface Car
-{
-    id: number;
-    make: string;
-    model: string;
-    plateNumber: string;
-    dailyRate: number;
-    kind: string;
-    isAvailable: boolean;
-}
+    // interface Car
+    // {
+    //     id: number;
+    //     make: string;
+    //     model: string;
+    //     plateNumber: string;
+    //     dailyRate: number;
+    //     kind: string;
+    //     isAvailable: boolean;
+    // }
 
-interface MakeReservationDto {
-    startDate: Date | null,
-    endDate: Date | null,
-    carId?: number,
-    pickupLocationId?: number,
-    dropoffLocationId?: number,
-    userId?: number
-}
-    const config:any = corsConfig;
+    // interface MakeReservationDto {
+    //     startDate: Date | null,
+    //     endDate: Date | null,
+    //     carId?: number,
+    //     pickupLocationId?: number,
+    //     dropoffLocationId?: number,
+    //     userId?: number
+    // }
+    const config: any = corsConfig;
     const [startDate, setStartDate] = useState<Date | null>(new Date());
     const [endDate, setEndDate] = useState<Date | null>(new Date());
     const [cars, setCars] = useState<Car[]>([]);
@@ -49,23 +53,23 @@ interface MakeReservationDto {
     const [selectedPickupLocation, setSelectedPickupLocation] = useState<PickupLocation>();
     const [selectedDropoffLocation, setSelectedDropoffLocation] = useState<DropoffLocation>();
 
-    
+
     useEffect(() => {
-        (async() => {
+        (async () => {
             const { data } = await axios.get<Car[]>("https://localhost:7216/car/getAllAvailable");
             setCars(data);
         })()
     }, []);
 
     useEffect(() => {
-        (async() => {
+        (async () => {
             const { data } = await axios.get<PickupLocation[]>("https://localhost:7216/location/getPickupLocations");
             setPickupLocations(data);
         })()
     }, []);
 
     useEffect(() => {
-        (async() => {
+        (async () => {
             const { data } = await axios.get<DropoffLocation[]>("https://localhost:7216/location/getDropoffLocations");
             setDropoffLocations(data);
         })()
@@ -90,15 +94,14 @@ interface MakeReservationDto {
         setSelectedDropoffLocation(selected);
     }
 
-    async function makeReservation()
-    {
-        const makeReservationDto:MakeReservationDto = {
-            startDate : startDate,
-            endDate : endDate,
+    async function makeReservation() {
+        const makeReservationDto: MakeReservationDto = {
+            startDate: startDate,
+            endDate: endDate,
             carId: selectedCar?.id,
             pickupLocationId: selectedPickupLocation?.id,
             dropoffLocationId: selectedDropoffLocation?.id,
-            userId : Number(localStorage.getItem("userId"))
+            userId: Number(localStorage.getItem("userId"))
         }
         const response = await axios.post<MakeReservationDto>("https://localhost:7216/reservation/create", makeReservationDto, config);
     }
@@ -116,7 +119,7 @@ interface MakeReservationDto {
                 <div>
                     <label>End Date:</label>
                     <DatePicker selected={endDate} onChange={(date) => setEndDate(date)} />
-                <h2>Car Selection</h2>
+                    <h2>Car Selection</h2>
                 </div>
                 <div>
                     <label htmlFor="car-select">Choose a Car:</label>
