@@ -5,6 +5,7 @@ import corsConfig from "../helpers/CORSConfig";
 import { Button, Form, Input } from "antd";
 import form from "antd/es/form";
 import { RegisterUserDto } from "../models/dtos/RegisterUserDto";
+import register from "../functions/Register";
 
 const Registration = () => {
 
@@ -17,19 +18,19 @@ const Registration = () => {
   const navigate = useNavigate();
   const config: any = corsConfig;
 
-  async function register(registerData: RegisterUserDto, config: any): Promise<boolean> {
-    try {
-      const response = await axios.post<RegisterResponse>("https://localhost:7216/account/register", registerData, config);
-      if (response.status == 200 || response.status == 201) {
-        return true;
-      }
-    } catch (error) {
-      console.error(error);
-      alert("An error occurred while registration. Please try again later.");
-      return false;
-    }
-    return false;
-  }
+  // async function register(registerData: RegisterUserDto, config: any): Promise<boolean> {
+  //   try {
+  //     const response = await axios.post<RegisterResponse>("https://localhost:7216/account/register", registerData, config);
+  //     if (response.status == 200 || response.status == 201) {
+  //       return true;
+  //     }
+  //   } catch (error) {
+  //     console.error(error);
+  //     alert("An error occurred while registration. Please try again later.");
+  //     return false;
+  //   }
+  //   return false;
+  // }
 
   return (
 
