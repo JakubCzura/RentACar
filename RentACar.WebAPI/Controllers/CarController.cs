@@ -34,7 +34,12 @@ namespace RentACar.WebAPI.Controllers
             {
                 return NotFound(cars);
             }
-            return Ok(cars);
+            cars = cars.Where(x => x.IsAvailable == true);
+            if (cars.Any())
+            {
+                return Ok(cars);
+            }
+            return NotFound(cars);
         }
     }
 }

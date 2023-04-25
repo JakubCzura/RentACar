@@ -38,7 +38,6 @@ namespace RentACar.WebAPI
             builder.Services.AddSwaggerGen();
 
             builder.Services.AddDbContext<RentACarDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("RentACarDbContextConnectionString")));
-
             builder.Services.AddScoped<IUserRepository, UserRepository>();
             builder.Services.AddScoped<IUserService, UserService>();
             builder.Services.AddScoped<ICarRepository, CarRepository>();
@@ -51,9 +50,14 @@ namespace RentACar.WebAPI
             builder.Services.AddScoped<IDropoffLocationService, DropoffLocationService>();
             builder.Services.AddScoped<IValidator<RegisterUserDto>, RegisterUserDtoValidator>();
             builder.Services.AddScoped<IValidator<LogInUserDto>, LogInUserDtoValidator>();
+            builder.Services.AddScoped<IValidator<MakeReservationDto>, MakeReservationDtoValidator>();
 
             var app = builder.Build();
-
+            using (IServiceScope scope = app.Services.CreateScope())
+            {
+                RentACarDbContext dataBase = scope.ServiceProvider.GetRequiredService<RentACarDbContext>();
+                dataBase.Database.Migrate();
+            }
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
             {

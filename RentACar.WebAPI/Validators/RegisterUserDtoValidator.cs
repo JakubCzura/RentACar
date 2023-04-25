@@ -1,4 +1,4 @@
-﻿using FluentValidation;
+using FluentValidation;
 using RentACar.WebAPI.Models;
 using RentACar.WebAPI.Models.Dtos;
 using RentACar.WebAPI.Services.Interfaces;
@@ -14,20 +14,25 @@ namespace RentACar.WebAPI.Validators
             _userService = userService;
 
             RuleFor(x => x.Name)
-               .NotEmpty().WithMessage("Name can't be empty");
+                .NotEmpty().WithMessage("Name can't be empty")
+                .MinimumLength(2).WithMessage("Email must contain at least 2 characters");
 
             RuleFor(x => x.Surname)
-                .NotEmpty().WithMessage("Surname can't be empty");
+                .NotEmpty().WithMessage("Surname can't be empty")
+                .MinimumLength(2).WithMessage("Email must contain at least 2 characters");
 
             RuleFor(x => x.Email)
                 .NotEmpty().WithMessage("Email can't be empty")
-                .EmailAddress().WithMessage("Niepoprawny format e-mail");
+                .MinimumLength(4).WithMessage("Email must contain at least 4 characters")
+                .EmailAddress().WithMessage("Email should be in correct format");
 
             RuleFor(x => x.Password)
-             .NotEmpty().WithMessage("Password can't be empty");
+                .NotEmpty().WithMessage("Password can't be empty")
+                .MinimumLength(4).WithMessage("Password must contain at least 4 characters"); 
 
             RuleFor(x => x.PhoneNumber)
-            .NotEmpty().WithMessage("Phone number can't be empty");
+                .NotEmpty().WithMessage("Phone number can't be empty")
+                .MinimumLength(5).WithMessage("Phone number must contain at least 5 characters"); ;
 
             RuleFor(x => x.Email)
                .CustomAsync(async (value, context, cancellationToken) =>
@@ -36,7 +41,7 @@ namespace RentACar.WebAPI.Validators
                    bool isEmailUsed = users.Any(x => x.Email == value);
                    if (isEmailUsed)
                    {
-                       context.AddFailure(nameof(RegisterUserDto.Email), "E-mail jest już używany");
+                       context.AddFailure(nameof(RegisterUserDto.Email), "E-mail has been already taken");
                    }
                });
         }

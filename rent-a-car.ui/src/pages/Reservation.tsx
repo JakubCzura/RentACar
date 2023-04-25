@@ -3,6 +3,7 @@ import { Navigate } from "react-router-dom";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import axios from 'axios';
+import corsConfig from "../helpers/CORSConfig";
 
 
 const Reservation = () => {
@@ -38,7 +39,7 @@ interface MakeReservationDto {
     dropoffLocationId?: number,
     userId?: number
 }
-
+    const config:any = corsConfig;
     const [startDate, setStartDate] = useState<Date | null>(new Date());
     const [endDate, setEndDate] = useState<Date | null>(new Date());
     const [cars, setCars] = useState<Car[]>([]);
@@ -48,15 +49,7 @@ interface MakeReservationDto {
     const [selectedPickupLocation, setSelectedPickupLocation] = useState<PickupLocation>();
     const [selectedDropoffLocation, setSelectedDropoffLocation] = useState<DropoffLocation>();
 
-    const r:MakeReservationDto = {
-        startDate : startDate,
-        endDate : endDate,
-        carId: selectedCar?.id,
-        pickupLocationId: selectedPickupLocation?.id,
-        dropoffLocationId: selectedDropoffLocation?.id,
-        userId : Number(localStorage.getItem("userId"))
-    }
-
+    
     useEffect(() => {
         (async() => {
             const { data } = await axios.get<Car[]>("https://localhost:7216/car/getAllAvailable");
@@ -95,6 +88,19 @@ interface MakeReservationDto {
         const locationId = event.target.value;
         const selected = dropoffLocations.find((dropoffLocation) => dropoffLocation.id === parseInt(locationId));
         setSelectedDropoffLocation(selected);
+    }
+
+    async function makeReservation()
+    {
+        const makeReservationDto:MakeReservationDto = {
+            startDate : startDate,
+            endDate : endDate,
+            carId: selectedCar?.id,
+            pickupLocationId: selectedPickupLocation?.id,
+            dropoffLocationId: selectedDropoffLocation?.id,
+            userId : Number(localStorage.getItem("userId"))
+        }
+        const response = await axios.post<MakeReservationDto>("https://localhost:7216/reservation/create", makeReservationDto, config);
     }
 
     if (localStorage.getItem("authenticated") != "true") {
@@ -168,6 +174,9 @@ interface MakeReservationDto {
                         <p>Name: {selectedDropoffLocation.name}</p>
                     </div>
                 )}
+                <div>
+                    <button onClick={makeReservation}>Submit reservation</button>
+                </div>
             </div>
         );
     }
