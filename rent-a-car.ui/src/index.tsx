@@ -5,8 +5,9 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Login from './pages/Login';
-import Reservation from './pages/Reservation';
+
 import Registration from './pages/Registration';
+import Reservation from './pages/Reservation';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
