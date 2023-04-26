@@ -8,6 +8,7 @@ import { DropoffLocation } from "../models/DropoffLocation";
 import { Car } from "../models/Car";
 import { MakeReservationDto } from "../models/dtos/MakeReservationDto";
 import { Button, DatePicker, Form, Input, Select } from "antd";
+import reserve from "../functions/Reserve";
 
 
 const Reservation = () => {
@@ -42,6 +43,10 @@ const Reservation = () => {
         })()
     }, []);
 
+    const handleCarChange = (carId: number) => {
+        const car = cars.find((car) => car.id === carId);
+        setSelectedCar(car);
+    };
 
     // function handleCarSelection(event: React.ChangeEvent<HTMLSelectElement>) {
     //     const carId = event.target.value;
@@ -61,17 +66,17 @@ const Reservation = () => {
     //     setSelectedDropoffLocation(selected);
     // }
 
-    async function makeReservation() {
-        const makeReservationDto: MakeReservationDto = {
-            startDate: startDate,
-            endDate: endDate,
-            carId: selectedCar?.id,
-            pickupLocationId: selectedPickupLocation?.id,
-            dropoffLocationId: selectedDropoffLocation?.id,
-            userId: Number(localStorage.getItem("userId"))
-        }
-        const response = await axios.post<MakeReservationDto>("https://localhost:7216/reservation/create", makeReservationDto, config);
-    }
+    // async function makeReservation() {
+    //     const makeReservationDto: MakeReservationDto = {
+    //         startDate: startDate,
+    //         endDate: endDate,
+    //         carId: selectedCar?.id,
+    //         pickupLocationId: selectedPickupLocation?.id,
+    //         dropoffLocationId: selectedDropoffLocation?.id,
+    //         userId: Number(localStorage.getItem("userId"))
+    //     }
+    //     const response = await axios.post<MakeReservationDto>("https://localhost:7216/reservation/create", makeReservationDto, config);
+    // }
 
     if (localStorage.getItem("authenticated") != "true") {
         return <Navigate replace to="/login" />;
@@ -80,25 +85,25 @@ const Reservation = () => {
         return (
             <div style={{ display: "flex", justifyContent: "center" }}>
                 <Form
-                // onFinish={async (values) => {
-                //     const dto: MakeReservationDto =
-                //     {
-                //         name: values.name,
-                //         carId: values.car.id
-                //         surname: values.surname,
-                //         email: values.email,
-                //         password: values.password,
-                //         phoneNumber: values.phoneNumber
-                //     }
-                //     if (await register(dto, corsConfig) == true) {
-                //         alert('You were registered!');
-                //         //navigate("/login")
-                //     }
-                //     else {
-                //         alert("Registration failed. Please try again.");
-                //     }
-                // }
-                //}
+                    onFinish={async (values) => {
+                        const dto: MakeReservationDto =
+                        {
+                            startDate: values.startDate,
+                            endDate: values.endDate,
+                            carId: values.car,
+                            pickupLocationId: values.pickupLocation,
+                            dropoffLocationId: values.dropoffLocation,
+                            userId: Number(localStorage.getItem("userId"))
+                        }
+                        if (await reserve(dto, corsConfig) == true) {
+                            alert('You have been reserved the car!');
+                            //navigate("/login")
+                        }
+                        else {
+                            alert("Reservation failed. Please try again.");
+                        }
+                    }
+                    }
                 >
                     <Form.Item label="Start date" name="startDate">
                         <DatePicker />
@@ -109,7 +114,7 @@ const Reservation = () => {
                     {/* <Form.Item label="Select" name="car" initialValue={selectedCar?.id}> */}
                     <Form.Item label="Car" name="car" initialValue={selectedCar?.id}>
                         {/* <Select onChange={setSelectedCar}> */}
-                        <Select >
+                        <Select onChange={handleCarChange}>
                             {cars.map(car => (
                                 <Select.Option key={car.id} value={car.id}>
                                     {car.make} {car.model}, {car.kind}, daily rate: {car.dailyRate}
@@ -117,6 +122,15 @@ const Reservation = () => {
                             ))}
                         </Select>
                     </Form.Item>
+                    {selectedCar && (
+                        <div>
+                            <h3>Selected Car</h3>
+                            <p>Make: {selectedCar.make}</p>
+                            <p>Model: {selectedCar.model}</p>
+                            <p>Plate Number: {selectedCar.plateNumber}</p>
+                            <p>Daily Rate: {selectedCar.dailyRate}</p>
+                            <p>Kind: {selectedCar.kind}</p>
+                        </div>)}
                     <Form.Item label="Pickup location" name="pickupLocation" initialValue={selectedPickupLocation?.id}>
                         {/* <Select onChange={setSelectedCar}> */}
                         <Select >
