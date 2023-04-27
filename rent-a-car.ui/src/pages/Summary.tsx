@@ -62,6 +62,7 @@ const Summary = () => {
                 <p>Car: {car?.make} {car?.model} - {car?.kind} - {car?.plateNumber}</p>
                 <p>Pickup location: {pickupLocation?.name} </p>
                 <p>Dropoff location: {dropoffLocation?.name}</p>
+                <p>Total cost: {reservationData.totalCost} EUR</p>
             </Card>
         </div>
     )
