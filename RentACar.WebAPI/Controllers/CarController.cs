@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using RentACar.WebAPI.Services;
 using RentACar.WebAPI.Services.Interfaces;
 
 namespace RentACar.WebAPI.Controllers
@@ -15,7 +16,6 @@ namespace RentACar.WebAPI.Controllers
         }
 
         [HttpGet]
-        [Route("[action]")]
         public async Task<IActionResult> GetAll()
         {
             var cars = await _carService.GetAllAsync();
@@ -24,6 +24,17 @@ namespace RentACar.WebAPI.Controllers
                 return NotFound(cars);
             }
             return Ok(cars);
+        }
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> Get(int id)
+        {
+            var car = await _carService.GetAsync(id);
+            if (car == null)
+            {
+                NotFound(car);
+            }
+            return Ok(car);
         }
 
         [HttpGet]

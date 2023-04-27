@@ -9,6 +9,7 @@ import { Car } from "../models/Car";
 import { MakeReservationDto } from "../models/dtos/MakeReservationDto";
 import { Button, DatePicker, Form, Select } from "antd";
 import reserve from "../functions/Reserve";
+import createSummary from "../functions/CreateSummary";
 
 const Reservation = () => {
 
@@ -58,6 +59,8 @@ const Reservation = () => {
                     onFinish={async (values) => {
                         const dto: MakeReservationDto =
                         {
+                            //startDate: (new Date(values.startDate)).toDateString(),
+                           // endDate: (new Date(values.endDate)).toDateString(),
                             startDate: values.startDate,
                             endDate: values.endDate,
                             carId: values.car,
@@ -65,12 +68,17 @@ const Reservation = () => {
                             dropoffLocationId: values.dropoffLocation,
                             userId: Number(localStorage.getItem("userId"))
                         }
-                        const response = await reserve(dto, corsConfig)
+                        const response = await createSummary(dto, corsConfig)
                         {
                             if (response) {
                                 navigate("/summary", { state: { data: response } })
                             }
                         }
+                        // {
+                        //     if (dto) {
+                        //         navigate("/summary", { state: { data: dto } })
+                        //     }
+                        // }
                     }
                     }
                 >

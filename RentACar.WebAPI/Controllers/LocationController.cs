@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using RentACar.WebAPI.Services;
 using RentACar.WebAPI.Services.Interfaces;
 
 namespace RentACar.WebAPI.Controllers
@@ -36,6 +37,28 @@ namespace RentACar.WebAPI.Controllers
                 return NotFound(locations);
             }
             return Ok(locations);
+        }
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetDropoffLocation(int id)
+        {
+            var location = await _dropoffLocationService.GetAsync(id);
+            if (location == null)
+            {
+                NotFound(location);
+            }
+            return Ok(location);
+        }
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetPickupLocation(int id)
+        {
+            var location = await _pickupLocationService.GetAsync(id);
+            if (location == null)
+            {
+                NotFound(location);
+            }
+            return Ok(location);
         }
     }
 }

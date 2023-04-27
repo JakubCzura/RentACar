@@ -32,25 +32,25 @@ const Summary = () => {
 
     useEffect(() => {
         (async () => {
-            const { data } = await axios.get<Car[]>("https://localhost:7216/car/getAll");
-            setCars(data);
-            setCar(data.find(location => location.id === reservationData.pickupLocationId))
+            const { data } = await axios.get<Car>("https://localhost:7216/car/" + reservationData.carId);
+            setCar(data)
+            //setCar(data.find(car => car.id === reservationData.carId))
         })()
     }, []);
 
     useEffect(() => {
         (async () => {
-            const { data } = await axios.get<PickupLocation[]>("https://localhost:7216/location/getPickupLocations");
-            setPickupLocations(data);
-            setPickupLocation(data.find(location => location.id === reservationData.pickupLocationId))
+            const { data } = await axios.get<PickupLocation>("https://localhost:7216/location/getPickupLocation/" + reservationData.pickupLocationId);
+            setPickupLocation(data);
+            //setPickupLocation(data.find(location => location.id === reservationData.pickupLocationId))
         })()
     }, []);
 
     useEffect(() => {
         (async () => {
-            const { data } = await axios.get<DropoffLocation[]>("https://localhost:7216/location/getDropoffLocations");
-            setDropoffLocations(data);
-            setDropoffLocation(data.find(location => location.id === reservationData.dropoffLocationId))
+            const { data } = await axios.get<DropoffLocation>("https://localhost:7216/location/getDropoffLocation/" + reservationData.dropoffLocationId);
+            setDropoffLocation(data);
+            //setDropoffLocation(data.find(location => location.id === reservationData.dropoffLocationId))
         })()
     }, []);
 
@@ -66,6 +66,9 @@ const Summary = () => {
                     <p>Pickup location: {pickupLocation?.name} </p>
                     <p>Dropoff location: {dropoffLocation?.name}</p>
                     <p>Total cost: {reservationData.totalCost} EUR</p>
+                    <p>User: {reservationData.name} {reservationData.surname}</p>
+                    <p>Email: {reservationData.email}</p>
+                    <p>Phone number: {reservationData.phoneNumber}</p>
                 </Card>
             </div>
         )
