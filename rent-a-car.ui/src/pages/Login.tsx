@@ -22,7 +22,7 @@ const Login = () => {
             password: values.password
           }
           if (await logIn(dto, corsConfig) == true) {
-            alert('You have been logged in!');
+            //alert('You have been logged in!');
             navigate("/reservation")
           }
           else {
@@ -38,10 +38,10 @@ const Login = () => {
           <Input.Password placeholder="Password" required />
         </Form.Item>
         <Form.Item>
-          <Button block htmlType='submit'>Log in</Button>
+          <Button block type="primary" htmlType='submit'>Log in</Button>
         </Form.Item>
         <h3>Don't have account?</h3>
-        <Button block htmlType='submit' onClick={navigateToRegistration}>Create a new one</Button>
+        <Button block type="primary" htmlType='submit' onClick={navigateToRegistration}>Create a new one</Button>
       </Form>
     </div>
   );

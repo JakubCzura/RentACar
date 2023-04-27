@@ -1,5 +1,5 @@
 import { SetStateAction, useEffect, useState } from "react";
-import { Navigate, useLocation } from "react-router-dom";
+import { Navigate, useLocation, useNavigate } from "react-router-dom";
 import "react-datepicker/dist/react-datepicker.css";
 import axios from 'axios';
 import corsConfig from "../helpers/CORSConfig";
@@ -11,9 +11,10 @@ import { Button, Card, DatePicker, Form, Input, Select } from "antd";
 import reserve from "../functions/Reserve";
 import { format, parseISO } from 'date-fns';
 import { GetTotalCost } from "../models/dtos/GetTotalCost";
+import { getConfig } from "@testing-library/react";
 
 const Summary = () => {
-
+    const navigate = useNavigate()
     const [makeReservationDto, setMakeReservationDto] = useState<MakeReservationDto>();
     const config: any = corsConfig;
     const [startDate, setStartDate] = useState<Date | null>(new Date());
@@ -60,8 +61,8 @@ const Summary = () => {
         return (
             <div style={{ display: "flex", justifyContent: "center" }}>
                 <Card title="Summary">
-                    <p>Start date: {reservationData.startDate}</p>
-                    <p>End date: {reservationData.endDate}</p>
+                    <p>Start date: {new Date(reservationData.startDate).toDateString()}</p>
+                    <p>End date: {new Date(reservationData.endDate).toDateString()}</p>
                     <p>Car: {car?.make} {car?.model} - {car?.kind} - {car?.plateNumber}</p>
                     <p>Pickup location: {pickupLocation?.name} </p>
                     <p>Dropoff location: {dropoffLocation?.name}</p>
@@ -69,7 +70,20 @@ const Summary = () => {
                     <p>User: {reservationData.name} {reservationData.surname}</p>
                     <p>Email: {reservationData.email}</p>
                     <p>Phone number: {reservationData.phoneNumber}</p>
+                    <div>
+                        <Button block type="primary" htmlType='submit' style={{ margin: 5 }}
+                            onClick={() => reserve(new MakeReservationDto(new Date(reservationData.startDate),
+                                new Date(reservationData.endDate),
+                                reservationData.carId,
+                                reservationData.pickupLocationId,
+                                reservationData.dropoffLocationId,
+                                Number(localStorage.getItem("userId"))),
+                                getConfig)}>Rent the car</Button>
+                        <Button block type="primary" danger htmlType='submit' style={{ margin: 5 }} onClick={() => navigate("/reservation")}>Cancell</Button>
+                    </div>
+
                 </Card>
+
             </div>
         )
     }

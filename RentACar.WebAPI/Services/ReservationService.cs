@@ -36,9 +36,9 @@ namespace RentACar.WebAPI.Services
                 Car = car,
                 TotalCost = TotalCostCalculation.Calculate(dto.StartDate, dto.EndDate, car.DailyRate),
                 User = await _userService.GetAsync(dto.UserId)
-            };
-            await _carService.UpdateAsync(car);
+        };
             await _reservationRepository.CreateAsync(reservation);
+            await _carService.UpdateAsync(car);
         }
     }
 }

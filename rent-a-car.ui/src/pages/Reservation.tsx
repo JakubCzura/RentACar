@@ -128,7 +128,7 @@ const Reservation = () => {
                     </Form.Item>
 
                     <Form.Item>
-                        <Button block htmlType='submit'>Move to summary</Button>
+                        <Button block type="primary" htmlType='submit'>Move to summary</Button>
                     </Form.Item>
                 </Form>
             </div>

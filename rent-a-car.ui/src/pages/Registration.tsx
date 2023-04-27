@@ -46,7 +46,7 @@ const Registration = () => {
           <Input placeholder="Phone number" required />
         </Form.Item>
         <Form.Item>
-          <Button block htmlType='submit'>Register</Button>
+          <Button block type="primary" htmlType='submit'>Register</Button>
         </Form.Item>
       </Form>
     </div>
