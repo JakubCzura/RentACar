@@ -11,7 +11,7 @@ import { Button, DatePicker, Form, Select } from "antd";
 import reserve from "../functions/Reserve";
 
 const Reservation = () => {
-    
+
     const navigate = useNavigate();
     const config: any = corsConfig;
     const [startDate, setStartDate] = useState<Date | null>(new Date());
@@ -51,7 +51,6 @@ const Reservation = () => {
 
     if (localStorage.getItem("authenticated") != "true") {
         return <Navigate replace to="/login" />;
-
     } else {
         return (
             <div style={{ display: "flex", justifyContent: "center" }}>
@@ -68,15 +67,14 @@ const Reservation = () => {
                         }
                         const response = await reserve(dto, corsConfig)
                         {
-                            alert('You have been reserved the car!');
-                            navigate("/summary", { state: {data: response} })
-
+                            if (response) {
+                                navigate("/summary", { state: { data: response } })
+                            }
                         }
-                            //navigate("/login")
-                       
                     }
                     }
                 >
+                    <h3>Rent a car</h3>
                     <Form.Item label="Start date" name="startDate">
                         <DatePicker showTime={false} />
                     </Form.Item>
@@ -122,7 +120,7 @@ const Reservation = () => {
                     </Form.Item>
 
                     <Form.Item>
-                        <Button block htmlType='submit'>Submit</Button>
+                        <Button block htmlType='submit'>Move to summary</Button>
                     </Form.Item>
                 </Form>
             </div>

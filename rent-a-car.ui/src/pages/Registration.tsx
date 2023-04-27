@@ -29,23 +29,24 @@ const Registration = () => {
           }
         }}
       >
-        <Form.Item label="User name" name="name">
-          <Input placeholder="User name" required />
+        <h3>Create an account</h3>
+        <Form.Item label="Name" name="name">
+          <Input placeholder="Name" required />
         </Form.Item>
-        <Form.Item label="User surname" name="surname">
-          <Input placeholder="User surname" required />
+        <Form.Item label="Surname" name="surname">
+          <Input placeholder="Surname" required />
         </Form.Item>
-        <Form.Item label="User email" name="email">
-          <Input placeholder="User email" required />
+        <Form.Item label="Email" name="email">
+          <Input placeholder="Email" required />
         </Form.Item>
-        <Form.Item label="User password" name="password">
-          <Input.Password placeholder="User password" required />
+        <Form.Item label="Password" name="password">
+          <Input.Password placeholder="Password" required />
         </Form.Item>
-        <Form.Item label="User phone number" name="phoneNumber">
-          <Input placeholder="User phone number" required />
+        <Form.Item label="Phone number" name="phoneNumber">
+          <Input placeholder="Phone number" required />
         </Form.Item>
         <Form.Item>
-          <Button block htmlType='submit'>Submit</Button>
+          <Button block htmlType='submit'>Register</Button>
         </Form.Item>
       </Form>
     </div>

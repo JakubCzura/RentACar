@@ -38,10 +38,10 @@ const Login = () => {
           <Input.Password placeholder="Password" required />
         </Form.Item>
         <Form.Item>
-          <Button block htmlType='submit'>Submit</Button>
+          <Button block htmlType='submit'>Log in</Button>
         </Form.Item>
         <h3>Don't have account?</h3>
-        <Button block htmlType='submit' onClick={navigateToRegistration}>Register</Button>
+        <Button block htmlType='submit' onClick={navigateToRegistration}>Create a new one</Button>
       </Form>
     </div>
   );

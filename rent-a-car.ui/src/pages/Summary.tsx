@@ -54,19 +54,22 @@ const Summary = () => {
         })()
     }, []);
 
-    return (
-        <div style={{ display: "flex", justifyContent: "center" }}>
-            <Card title="Summary">
-                <p>Start date: {reservationData.startDate}</p>
-                <p>End date: {reservationData.endDate}</p>
-                <p>Car: {car?.make} {car?.model} - {car?.kind} - {car?.plateNumber}</p>
-                <p>Pickup location: {pickupLocation?.name} </p>
-                <p>Dropoff location: {dropoffLocation?.name}</p>
-                <p>Total cost: {reservationData.totalCost} EUR</p>
-            </Card>
-        </div>
-    )
-
+    if (localStorage.getItem("authenticated") != "true") {
+        return <Navigate replace to="/login" />;
+    } else {
+        return (
+            <div style={{ display: "flex", justifyContent: "center" }}>
+                <Card title="Summary">
+                    <p>Start date: {reservationData.startDate}</p>
+                    <p>End date: {reservationData.endDate}</p>
+                    <p>Car: {car?.make} {car?.model} - {car?.kind} - {car?.plateNumber}</p>
+                    <p>Pickup location: {pickupLocation?.name} </p>
+                    <p>Dropoff location: {dropoffLocation?.name}</p>
+                    <p>Total cost: {reservationData.totalCost} EUR</p>
+                </Card>
+            </div>
+        )
+    }
 };
 
 export default Summary;
