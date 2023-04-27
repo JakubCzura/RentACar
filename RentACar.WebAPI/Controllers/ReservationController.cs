@@ -1,6 +1,7 @@
 ﻿using FluentValidation;
 using FluentValidation.Results;
 using Microsoft.AspNetCore.Mvc;
+using RentACar.WebAPI.Helper;
 using RentACar.WebAPI.Models;
 using RentACar.WebAPI.Models.Dtos;
 using RentACar.WebAPI.Services.Interfaces;
@@ -13,11 +14,13 @@ namespace RentACar.WebAPI.Controllers
     {
         private readonly IValidator<MakeReservationDto> _makeReservationDtoValidator;
         private readonly IReservationService _reservationService;
+        private readonly ICarService _carService;
 
-        public ReservationController(IValidator<MakeReservationDto> makeReservationDtoValidator, IReservationService reservationService)
+        public ReservationController(IValidator<MakeReservationDto> makeReservationDtoValidator, IReservationService reservationService, ICarService carService)
         {
             _makeReservationDtoValidator = makeReservationDtoValidator;
             _reservationService = reservationService;
+            _carService = carService;
         }
 
         [HttpPost]
@@ -27,22 +30,17 @@ namespace RentACar.WebAPI.Controllers
             if (validation.IsValid)
             {
                 await _reservationService.CreateAsync(makeReservationDto);
-                return CreatedAtAction(nameof(Create), new { makeReservationDto.StartDate, makeReservationDto.EndDate });
-            }
-            else
-            {
-                return BadRequest("Can't make a reservation, invalid data");
-            }
-        }
-
-        [HttpPost]
-        public async Task<IActionResult> GetSummary([FromBody] MakeReservationDto makeReservationDto)
-        {
-            ValidationResult validation = await _makeReservationDtoValidator.ValidateAsync(makeReservationDto);
-            if (validation.IsValid)
-            {
-                await _reservationService.CreateAsync(makeReservationDto);
-                return CreatedAtAction(nameof(Create), new { makeReservationDto.StartDate, makeReservationDto.EndDate });
+                Car car = await _carService.GetAsync(makeReservationDto.CarId);
+                decimal totalCost = TotalCostCalculation.Calculate(makeReservationDto.StartDate, makeReservationDto.EndDate, car.DailyRate);
+                return CreatedAtAction(nameof(Create), new
+                {
+                    makeReservationDto.StartDate,
+                    makeReservationDto.EndDate,
+                    makeReservationDto.CarId,
+                    makeReservationDto.PickupLocationId,
+                    makeReservationDto.DropoffLocationId,
+                    totalCost
+                });
             }
             else
             {

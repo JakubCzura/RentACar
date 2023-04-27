@@ -59,21 +59,21 @@ const Reservation = () => {
                     onFinish={async (values) => {
                         const dto: MakeReservationDto =
                         {
-                            startDate: (new Date(values.startDate)).toDateString(),
-                            endDate: (new Date(values.endDate)).toDateString(),
+                            startDate: values.startDate,
+                            endDate: values.endDate,
                             carId: values.car,
                             pickupLocationId: values.pickupLocation,
                             dropoffLocationId: values.dropoffLocation,
                             userId: Number(localStorage.getItem("userId"))
                         }
-                        // if (await reserve(dto, corsConfig) == true) {
-                        //     alert('You have been reserved the car!');
-                        //     //navigate("/login")
-                        // }
-                        // else {
-                        //     alert("Reservation failed. Please try again.");
-                        // }
-                        navigate("/summary", { state: {data: dto} })
+                        const response = await reserve(dto, corsConfig)
+                        {
+                            alert('You have been reserved the car!');
+                            navigate("/summary", { state: {data: response} })
+
+                        }
+                            //navigate("/login")
+                       
                     }
                     }
                 >

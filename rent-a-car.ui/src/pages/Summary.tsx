@@ -10,35 +10,61 @@ import { MakeReservationDto } from "../models/dtos/MakeReservationDto";
 import { Button, Card, DatePicker, Form, Input, Select } from "antd";
 import reserve from "../functions/Reserve";
 import { format, parseISO } from 'date-fns';
+import { GetTotalCost } from "../models/dtos/GetTotalCost";
 
 const Summary = () => {
 
-
     const [makeReservationDto, setMakeReservationDto] = useState<MakeReservationDto>();
     const config: any = corsConfig;
-    const [startDate, setStartDate] = useState<Date | null >(new Date());
-    const [endDate, setEndDate] = useState<Date | null >(new Date());
+    const [startDate, setStartDate] = useState<Date | null>(new Date());
+    const [endDate, setEndDate] = useState<Date | null>(new Date());
     const [cars, setCars] = useState<Car[]>([]);
     const [pickupLocations, setPickupLocations] = useState<PickupLocation[]>([]);
     const [dropoffLocations, setDropoffLocations] = useState<DropoffLocation[]>([]);
     const [selectedCar, setSelectedCar] = useState<Car>();
-    const [selectedPickupLocation, setSelectedPickupLocation] = useState<PickupLocation>();
-    const [selectedDropoffLocation, setSelectedDropoffLocation] = useState<DropoffLocation>();
-    
+    const [pickupLocation, setPickupLocation] = useState<PickupLocation>();
+    const [dropoffLocation, setDropoffLocation] = useState<DropoffLocation>();
+    const [car, setCar] = useState<Car>()
+    const [totalCost, setTotalCost] = useState<number>()
     const location = useLocation();
     console.log(location)
-    const reservationData = location.state?.data; 
+    const reservationData = location.state?.data;
 
-   
-        return (
-            <div style={{ display: "flex", justifyContent: "center" }}>
-                <Card title="Summary">
-                <p>Name: { reservationData.startDate}</p>
-      <p>Email: {reservationData.endDate}</p>
-                </Card>
-            </div>
-        )
-    
+    useEffect(() => {
+        (async () => {
+            const { data } = await axios.get<Car[]>("https://localhost:7216/car/getAllAvailable");
+            setCar(data.find(car => car.id === reservationData.carId))
+        })()
+    }, []);
+
+    useEffect(() => {
+        (async () => {
+            const { data } = await axios.get<PickupLocation[]>("https://localhost:7216/location/getPickupLocations");
+            setPickupLocations(data);
+            setPickupLocation(data.find(location => location.id === reservationData.pickupLocationId))
+        })()
+    }, []);
+
+    useEffect(() => {
+        (async () => {
+            const { data } = await axios.get<DropoffLocation[]>("https://localhost:7216/location/getDropoffLocations");
+            setDropoffLocations(data);
+            setDropoffLocation(data.find(location => location.id === reservationData.dropoffLocationId))
+        })()
+    }, []);
+
+    return (
+        <div style={{ display: "flex", justifyContent: "center" }}>
+            <Card title="Summary">
+                <p>Start date: {reservationData.startDate}</p>
+                <p>End date: {reservationData.endDate}</p>
+                <p>Car: {car?.make} {car?.model} - {car?.kind} - {car?.plateNumber}</p>
+                <p>Pickup location: {pickupLocation?.name} </p>
+                <p>Dropoff location: {dropoffLocation?.name}</p>
+            </Card>
+        </div>
+    )
+
 };
 
 export default Summary;
