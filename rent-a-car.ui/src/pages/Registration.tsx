@@ -21,7 +21,6 @@ const Registration = () => {
             phoneNumber: values.phoneNumber
           }
           if (await register(dto, corsConfig) == true) {
-            alert('You were registered!');
             navigate("/login")
           }
           else {
