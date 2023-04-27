@@ -30,12 +30,12 @@ const Login = () => {
           }
         }}
       >
-        <h3>Register</h3>
+        <h3>Login</h3>
         <Form.Item label="Email" name="email">
           <Input placeholder="Email" required />
         </Form.Item>
         <Form.Item label="Password" name="password">
-          <Input placeholder="Password" required />
+          <Input.Password placeholder="Password" required />
         </Form.Item>
         <Form.Item>
           <Button block htmlType='submit'>Submit</Button>

@@ -35,6 +35,21 @@ namespace RentACar.WebAPI.Controllers
             }
         }
 
+        [HttpPost]
+        public async Task<IActionResult> GetSummary([FromBody] MakeReservationDto makeReservationDto)
+        {
+            ValidationResult validation = await _makeReservationDtoValidator.ValidateAsync(makeReservationDto);
+            if (validation.IsValid)
+            {
+                await _reservationService.CreateAsync(makeReservationDto);
+                return CreatedAtAction(nameof(Create), new { makeReservationDto.StartDate, makeReservationDto.EndDate });
+            }
+            else
+            {
+                return BadRequest("Can't make a reservation, invalid data");
+            }
+        }
+
         [HttpGet]
         public async Task<IActionResult> Get(int id)
         {

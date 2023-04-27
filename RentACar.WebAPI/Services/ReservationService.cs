@@ -29,8 +29,8 @@ namespace RentACar.WebAPI.Services
             car.IsAvailable = false;
             Reservation reservation = new()
             {
-                StartDate = dto.StartDate,
-                EndDate = dto.EndDate,
+                StartDate = dto.StartDate.Date,
+                EndDate = dto.EndDate.Date,
                 PickupLocation = await _pickupLocationService.GetAsync(dto.PickupLocationId),
                 DropoffLocation = await _dropoffLocationService.GetAsync(dto.DropoffLocationId),
                 Car = car,

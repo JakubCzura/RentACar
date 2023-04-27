@@ -8,6 +8,7 @@ import Login from './pages/Login';
 
 import Registration from './pages/Registration';
 import Reservation from './pages/Reservation';
+import Summary from './pages/Summary';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -20,6 +21,7 @@ root.render(
         <Route path="login" element={<Login />} />
         <Route path="register" element={<Registration />} />
         <Route path="reservation" element={<Reservation />} />
+        <Route path="summary" element={<Summary />} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>
