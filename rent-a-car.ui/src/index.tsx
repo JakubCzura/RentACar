@@ -9,6 +9,7 @@ import Login from './pages/Login';
 import Registration from './pages/Registration';
 import Reservation from './pages/Reservation';
 import Summary from './pages/Summary';
+import Thanks from './pages/Thanks';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -22,6 +23,7 @@ root.render(
         <Route path="register" element={<Registration />} />
         <Route path="reservation" element={<Reservation />} />
         <Route path="summary" element={<Summary />} />
+        <Route path="thanks" element={<Thanks />} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>

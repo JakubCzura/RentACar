@@ -1,6 +1,4 @@
 import axios from "axios";
-import { RegisterUserDto } from "../models/dtos/RegisterUserDto";
-import { RegisterResponse } from "../models/RegisterResponse";
 import { MakeReservationDto } from "../models/dtos/MakeReservationDto";
 
 export default async function createSummary(makeReservationDto: MakeReservationDto, config: any) : Promise<any> {

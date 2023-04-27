@@ -22,7 +22,6 @@ const Login = () => {
             password: values.password
           }
           if (await logIn(dto, corsConfig) == true) {
-            //alert('You have been logged in!');
             navigate("/reservation")
           }
           else {

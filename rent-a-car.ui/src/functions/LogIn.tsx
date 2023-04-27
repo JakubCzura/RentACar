@@ -11,12 +11,10 @@ export default async function logIn(logInData: LogInUserDto, config: any): Promi
         localStorage.setItem("userId", userId);
         return true;
       } else {
-        alert("Login failed. Please try again.");
         return false;
       }
     } catch (error) {
       console.error(error);
-      alert("An error occurred while logging in. Please try again later.");
       return false;
     }
   };

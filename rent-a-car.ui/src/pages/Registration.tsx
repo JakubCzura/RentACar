@@ -40,7 +40,7 @@ const Registration = () => {
           <Input placeholder="Email" required />
         </Form.Item>
         <Form.Item label="Password" name="password">
-          <Input.Password placeholder="Password" required />
+          <Input.Password placeholder="At least 2 characters" required />
         </Form.Item>
         <Form.Item label="Phone number" name="phoneNumber">
           <Input placeholder="Phone number" required />
