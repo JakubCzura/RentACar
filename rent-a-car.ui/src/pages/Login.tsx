@@ -29,6 +29,7 @@ const Login = () => {
           }
         }}
       >
+        <h2>Welcome to Mallorca car renting</h2>
         <h3>Login</h3>
         <Form.Item label="Email" name="email">
           <Input placeholder="Email" required />
