@@ -15,6 +15,7 @@ namespace RentACar.WebAPI.Controllers
         }
 
         [HttpGet]
+        [Route("[action]")]
         public async Task<IActionResult> GetAll()
         {
             var cars = await _carService.GetAllAsync();

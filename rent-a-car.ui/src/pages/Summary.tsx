@@ -32,8 +32,9 @@ const Summary = () => {
 
     useEffect(() => {
         (async () => {
-            const { data } = await axios.get<Car[]>("https://localhost:7216/car/getAllAvailable");
-            setCar(data.find(car => car.id === reservationData.carId))
+            const { data } = await axios.get<Car[]>("https://localhost:7216/car/getAll");
+            setCars(data);
+            setCar(data.find(location => location.id === reservationData.pickupLocationId))
         })()
     }, []);
 
