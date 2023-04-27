@@ -3,6 +3,10 @@ using RentACar.WebAPI.Services.Interfaces;
 
 namespace RentACar.WebAPI.Services
 {
+    /// <summary>
+    /// Generic class to perform crud operations in database
+    /// </summary>
+    /// <typeparam name="T">Object to be stored in database</typeparam>
     public class CrudService<T> : ICrudService<T> where T : class
     {
         private readonly ICrudRepository<T> _crudRepository;

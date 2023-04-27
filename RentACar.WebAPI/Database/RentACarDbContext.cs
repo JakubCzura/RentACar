@@ -71,20 +71,20 @@ namespace RentACar.WebAPI.Database
                 x.Property(x => x.Kind).IsRequired().HasMaxLength(100);
                 x.Property(x => x.IsAvailable).IsRequired();
                 x.HasMany(x => x.Reservations).WithOne(i => i.Car).IsRequired(false);
-                x.HasData(new Car { Id = 1, Make = "Tesla", Model = "Super", DailyRate = 402, Kind = "Passenger", IsAvailable = true },
-                    new Car { Id = 2, Make = "Tesla", Model = "Super X", DailyRate = 432, PlateNumber = "X412", Kind = "Passenger", IsAvailable = true },
-                    new Car { Id = 3, Make = "Tesla", Model = "Super Y", DailyRate = 213, PlateNumber = "D212", Kind = "Passenger", IsAvailable = true },
-                    new Car { Id = 4, Make = "Tesla", Model = "Huge", DailyRate = 531, PlateNumber = "DL212", Kind = "Passenger", IsAvailable = true },
-                    new Car { Id = 5, Make = "Tesla", Model = "Huge", DailyRate = 402, PlateNumber = "D242", Kind = "Passenger", IsAvailable = true },
-                    new Car { Id = 6, Make = "Tesla", Model = "Great", DailyRate = 421, PlateNumber = "DR212", Kind = "Passenger", IsAvailable = true },
-                    new Car { Id = 7, Make = "Tesla", Model = "Super", DailyRate = 402, PlateNumber = "D211", Kind = "Passenger", IsAvailable = true },
-                    new Car { Id = 8, Make = "Tesla", Model = "Super X", DailyRate = 421, PlateNumber = "D210", Kind = "Passenger", IsAvailable = true },
-                    new Car { Id = 9, Make = "Tesla", Model = "Super Huge", DailyRate = 342, PlateNumber = "D212", Kind = "Passenger", IsAvailable = true },
-                    new Car { Id = 10, Make = "Tesla", Model = "Super", DailyRate = 533, PlateNumber = "D212", Kind = "Passenger", IsAvailable = true },
-                    new Car { Id = 11, Make = "Tesla", Model = "Super Huge", DailyRate = 533, PlateNumber = "DF212", Kind = "Passenger", IsAvailable = true },
-                    new Car { Id = 12, Make = "Tesla", Model = "Great Huge", DailyRate = 531, PlateNumber = "DR212", Kind = "Passenger", IsAvailable = true },
-                    new Car { Id = 13, Make = "Tesla", Model = "Super", DailyRate = 123, PlateNumber = "D2312", Kind = "Passenger", IsAvailable = true },
-                    new Car { Id = 14, Make = "Tesla", Model = "Super", DailyRate = 402, PlateNumber = "D212", Kind = "Passenger", IsAvailable = true });
+                x.HasData(new Car { Id = 1, Make = "Tesla", Model = "Model S", DailyRate = 402, PlateNumber = "X4142", Kind = "Passenger", IsAvailable = true },
+                    new Car { Id = 2, Make = "Tesla", Model = "Model S", DailyRate = 432, PlateNumber = "X412", Kind = "Passenger", IsAvailable = true },
+                    new Car { Id = 3, Make = "Tesla", Model = "Model S", DailyRate = 213, PlateNumber = "D2512", Kind = "Passenger", IsAvailable = true },
+                    new Car { Id = 4, Make = "Tesla", Model = "Model S", DailyRate = 531, PlateNumber = "D8L212", Kind = "Passenger", IsAvailable = true },
+                    new Car { Id = 5, Make = "Tesla", Model = "Model S", DailyRate = 402, PlateNumber = "D242", Kind = "Passenger", IsAvailable = true },
+                    new Car { Id = 6, Make = "Tesla", Model = "Model X", DailyRate = 421, PlateNumber = "D1R212", Kind = "Passenger", IsAvailable = true },
+                    new Car { Id = 7, Make = "Tesla", Model = "Model X", DailyRate = 402, PlateNumber = "D211", Kind = "Passenger", IsAvailable = true },
+                    new Car { Id = 8, Make = "Tesla", Model = "Model X", DailyRate = 421, PlateNumber = "D2510", Kind = "Passenger", IsAvailable = true },
+                    new Car { Id = 9, Make = "Tesla", Model = "Model X", DailyRate = 342, PlateNumber = "D2612", Kind = "Passenger", IsAvailable = true },
+                    new Car { Id = 10, Make = "Tesla", Model = "Model Y", DailyRate = 533, PlateNumber = "D212", Kind = "Passenger", IsAvailable = true },
+                    new Car { Id = 11, Make = "Tesla", Model = "Model Y", DailyRate = 533, PlateNumber = "D98212", Kind = "Passenger", IsAvailable = true },
+                    new Car { Id = 12, Make = "Tesla", Model = "Model Y", DailyRate = 531, PlateNumber = "D7R212", Kind = "Passenger", IsAvailable = true },
+                    new Car { Id = 13, Make = "Tesla", Model = "Model Y", DailyRate = 123, PlateNumber = "D62312", Kind = "Passenger", IsAvailable = true },
+                    new Car { Id = 14, Make = "Tesla", Model = "Model Y", DailyRate = 402, PlateNumber = "D6212", Kind = "Passenger", IsAvailable = true });
             });
         }
     }

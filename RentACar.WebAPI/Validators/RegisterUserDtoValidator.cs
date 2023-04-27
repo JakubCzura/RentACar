@@ -28,7 +28,7 @@ namespace RentACar.WebAPI.Validators
 
             RuleFor(x => x.Password)
                 .NotEmpty().WithMessage("Password can't be empty")
-                .MinimumLength(2).WithMessage("Password must contain at least 2 characters"); 
+                .MinimumLength(2).WithMessage("Password must contain at least 2 characters");
 
             RuleFor(x => x.PhoneNumber)
                 .NotEmpty().WithMessage("Phone number can't be empty")

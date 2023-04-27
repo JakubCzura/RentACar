@@ -14,6 +14,7 @@ namespace RentACar.WebAPI.Services
         {
             _userRepository = userRepository;
         }
+
         public async Task<User> GetByEmailAndPasswordAsync(LogInUserDto dto)
         {
             return await _userRepository.GetByEmailAndPasswordAsync(dto);
@@ -30,6 +31,6 @@ namespace RentACar.WebAPI.Services
                 PhoneNumber = dto.PhoneNumber,
             };
             await _userRepository.CreateAsync(user);
-        }       
+        }
     }
 }

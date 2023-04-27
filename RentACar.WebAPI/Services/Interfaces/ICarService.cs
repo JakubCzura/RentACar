@@ -1,5 +1,4 @@
-﻿using RentACar.WebAPI.Models.Dtos;
-using RentACar.WebAPI.Models;
+﻿using RentACar.WebAPI.Models;
 
 namespace RentACar.WebAPI.Services.Interfaces
 {

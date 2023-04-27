@@ -16,6 +16,7 @@ namespace RentACar.WebAPI.Controllers
         private readonly IReservationService _reservationService;
         private readonly ICarService _carService;
         private readonly IUserService _userService;
+
         public ReservationController(IValidator<MakeReservationDto> makeReservationDtoValidator, IReservationService reservationService, ICarService carService, IUserService userService)
         {
             _makeReservationDtoValidator = makeReservationDtoValidator;
@@ -30,7 +31,7 @@ namespace RentACar.WebAPI.Controllers
             ValidationResult validation = await _makeReservationDtoValidator.ValidateAsync(makeReservationDto);
             if (validation.IsValid)
             {
-                await _reservationService.CreateAsync(makeReservationDto);       
+                await _reservationService.CreateAsync(makeReservationDto);
                 return CreatedAtAction(nameof(Create), new { makeReservationDto.CarId });
             }
             else
@@ -44,7 +45,7 @@ namespace RentACar.WebAPI.Controllers
         {
             ValidationResult validation = await _makeReservationDtoValidator.ValidateAsync(makeReservationDto);
             if (validation.IsValid)
-            {               
+            {
                 Car car = await _carService.GetAsync(makeReservationDto.CarId);
                 User user = await _userService.GetAsync(makeReservationDto.UserId);
                 decimal totalCost = TotalCostCalculation.Calculate(makeReservationDto.StartDate, makeReservationDto.EndDate, car.DailyRate);

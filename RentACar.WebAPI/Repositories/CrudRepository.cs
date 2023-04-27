@@ -4,6 +4,10 @@ using RentACar.WebAPI.Repositories.Interfaces;
 
 namespace RentACar.WebAPI.Repositories
 {
+    /// <summary>
+    /// Generic class to perform CRUD operations
+    /// </summary>
+    /// <typeparam name="T">Object to be stored in database</typeparam>
     public class CrudRepository<T> : ICrudRepository<T> where T : class
     {
         private readonly RentACarDbContext _rentACarDbContext;

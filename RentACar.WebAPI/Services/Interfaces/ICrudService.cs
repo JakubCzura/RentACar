@@ -1,5 +1,9 @@
 ﻿namespace RentACar.WebAPI.Services.Interfaces
 {
+    /// <summary>
+    /// Generic interface to perform crud operations in database
+    /// </summary>
+    /// <typeparam name="T">Objects to be stored in database</typeparam>
     public interface ICrudService<T> where T : class
     {
         Task<IEnumerable<T>> GetAllAsync();
