@@ -48,6 +48,9 @@ const Registration = () => {
         <Form.Item>
           <Button block type="primary" htmlType='submit'>Register</Button>
         </Form.Item>
+        <Form.Item>
+          <Button block type="primary" danger htmlType='submit' onClick={() => navigate("/login")}>Back to main page</Button>
+        </Form.Item>
       </Form>
     </div>
   );

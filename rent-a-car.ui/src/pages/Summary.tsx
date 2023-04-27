@@ -9,6 +9,7 @@ import { MakeReservationDto } from "../models/dtos/MakeReservationDto";
 import { Button, Card } from "antd";
 import reserve from "../functions/Reserve";
 import { getConfig } from "@testing-library/react";
+import Navbar from "../components/Navbar";
 
 const Summary = () => {
     const navigate = useNavigate()
@@ -58,31 +59,34 @@ const Summary = () => {
         return <Navigate replace to="/login" />
     } else {
         return (
-            <div style={{ display: "flex", justifyContent: "center" }}>
-                <Card title="Summary">
-                    <p>Start date: {new Date(reservationData.startDate).toDateString()}</p>
-                    <p>End date: {new Date(reservationData.endDate).toDateString()}</p>    
-                    <p>Pickup location: {pickupLocation?.name}</p>              
-                    <p>Dropoff location: {dropoffLocation?.name}</p>
-                    <p>Total cost: {reservationData.totalCost} EUR</p>
-                    <p>Client: {reservationData.name} {reservationData.surname}</p>
-                    <p>Email: {reservationData.email}</p>
-                    <p>Phone number: {reservationData.phoneNumber}</p>
-                    <br></br>
-                    <p>We are open 24/7</p>
-                    <p>You can pay with cash and credit card</p>
-                    <div>
-                        <Button block type="primary" htmlType='submit' style={{ margin: 5 }}
-                            onClick={() => handleReservation(new MakeReservationDto(new Date(reservationData.startDate),
-                                new Date(reservationData.endDate),
-                                reservationData.carId,
-                                reservationData.pickupLocationId,
-                                reservationData.dropoffLocationId,
-                                Number(localStorage.getItem("userId"))),
-                                getConfig)}>Rent the car</Button>
-                        <Button block type="primary" danger htmlType='submit' style={{ margin: 5 }} onClick={() => navigate("/reservation")}>Cancell</Button>
-                    </div>
-                </Card>
+            <div>
+                <Navbar />
+                <div style={{ display: "flex", justifyContent: "center" }}>
+                    <Card title="Summary">
+                        <p>Start date: {new Date(reservationData.startDate).toDateString()}</p>
+                        <p>End date: {new Date(reservationData.endDate).toDateString()}</p>
+                        <p>Pickup location: {pickupLocation?.name}</p>
+                        <p>Dropoff location: {dropoffLocation?.name}</p>
+                        <p>Total cost: {reservationData.totalCost} EUR</p>
+                        <p>Client: {reservationData.name} {reservationData.surname}</p>
+                        <p>Email: {reservationData.email}</p>
+                        <p>Phone number: {reservationData.phoneNumber}</p>
+                        <br></br>
+                        <p>We are open 24/7</p>
+                        <p>You can pay with cash and credit card</p>
+                        <div>
+                            <Button block type="primary" htmlType='submit' style={{ margin: 5 }}
+                                onClick={() => handleReservation(new MakeReservationDto(new Date(reservationData.startDate),
+                                    new Date(reservationData.endDate),
+                                    reservationData.carId,
+                                    reservationData.pickupLocationId,
+                                    reservationData.dropoffLocationId,
+                                    Number(localStorage.getItem("userId"))),
+                                    getConfig)}>Rent the car</Button>
+                            <Button block type="primary" danger htmlType='submit' style={{ margin: 5 }} onClick={() => navigate("/reservation")}>Cancell</Button>
+                        </div>
+                    </Card>
+                </div>
             </div>
         )
     }

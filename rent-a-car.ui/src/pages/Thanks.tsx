@@ -9,6 +9,7 @@ import { MakeReservationDto } from "../models/dtos/MakeReservationDto";
 import { Button, Card } from "antd";
 import reserve from "../functions/Reserve";
 import { getConfig } from "@testing-library/react";
+import Navbar from "../components/Navbar";
 
 const Thanks = () => {
     const navigate = useNavigate()
@@ -20,11 +21,13 @@ const Thanks = () => {
     const confirmedReservation = location.state?.confirmedReservation
     const confirmedDate = location.state?.confirmedDate
     console.log(confirmedReservation)
-    
+
     if (localStorage.getItem("authenticated") != "true") {
         return <Navigate replace to="/login" />
     } else {
         return (
+        <div>
+            <Navbar />
             <div style={{ display: "flex", justifyContent: "center" }}>
                 <Card title="Reservation confirmed">
                     <h2>Thank you for choosing our company</h2>
@@ -35,6 +38,7 @@ const Thanks = () => {
                     </div>
                 </Card>
             </div>
+        </div>
         )
     }
 };
