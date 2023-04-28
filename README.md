@@ -7,7 +7,7 @@ Launching:
 2. Open solution RentACar.sln and launch project RentACar.WebAPI.
 3. Open directory rent-a-car.ui for example in VS Code.
 4. Open new terminal, install npm with "npm install" and launch front-end with "npm start".
-5. Important! You may have to enable cors in your browser and need a proper extension to do it. This one helped me, otherwise there might occur an issue with sending request to API.
+5. Important! You may have to enable cors in your browser and need a proper extension to do it. This one helped me, otherwise there might occur an issue with sending requests.
 ![obraz](https://user-images.githubusercontent.com/76125047/235017129-f770d4d8-6b59-4e72-bf81-4c406003540d.png)
 7. That's all! Have a ball!
 
