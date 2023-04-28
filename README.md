@@ -9,10 +9,10 @@ Launching:
 4. Open new terminal, install npm with "npm install" and launch front-end with "npm start".
 5. That's all! Have a ball!
 
-![obraz](https://user-images.githubusercontent.com/76125047/235015512-c0e1c6b5-0414-4e28-aa26-f4ad1e2c9876.png)
-![obraz](https://user-images.githubusercontent.com/76125047/235015608-1f4e4735-bc5d-44c3-8103-678cf2a1bbad.png)
-![obraz](https://user-images.githubusercontent.com/76125047/235015776-36f6aa7b-f1dc-45ef-b28b-e09704ee0dcc.png)
-![obraz](https://user-images.githubusercontent.com/76125047/235015815-d69d15ba-482e-4e4e-b271-fe2b252668c1.png)
-![obraz](https://user-images.githubusercontent.com/76125047/235015845-d1871cbf-d187-41de-8de3-80766e79a7ca.png)
+![obraz](https://user-images.githubusercontent.com/76125047/235016022-639b8416-c1c7-4744-899d-be10d5190ba1.png)
+![obraz](https://user-images.githubusercontent.com/76125047/235016113-fd94a64f-451e-4b00-b5ff-8ff64d957105.png)
+![obraz](https://user-images.githubusercontent.com/76125047/235016190-00b5bfbe-c683-4f3b-81d1-c38d51af63ca.png)
+![obraz](https://user-images.githubusercontent.com/76125047/235016243-834b3d07-5f6f-4815-97c1-de505a55f029.png)
+![obraz](https://user-images.githubusercontent.com/76125047/235016274-9d5b0d9e-abd8-45ab-bcbd-e3e9be87f569.png)
 
 
