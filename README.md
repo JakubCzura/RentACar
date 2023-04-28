@@ -20,6 +20,7 @@ Project expectations:
 4. I created list of cars in database that are available to rent. When a car is returned it's availability should be set to true, but by now I have just implemented renting a car and marking it as reserved.
 5. Important feature is to return more friendly errors' messages to user interface as I use FluentValidation package to validate dto models. It should be implemented soon.
 6. Let's say default currency is EUR. Client can pay with credit card and cash while receiving the car. There should be other currencies and mobile payment using the website but it's just a simple demo app.
+7. I don't store information about city in database as I consider the app to be used only in Mallorca for local people. When the application gets popular it can be deliver to other cities so database should be updated and proper locations should be matched with proper cities.
 
 Please text me if something goes wrong and there appear issues. 
 
