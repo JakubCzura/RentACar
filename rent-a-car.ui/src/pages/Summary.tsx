@@ -42,14 +42,7 @@ const Summary = () => {
     }, []);
 
     async function handleReservation(makeReservationDto: MakeReservationDto, config: any) {
-        const result = await reserve(new MakeReservationDto(new Date(reservationData.startDate),
-            new Date(reservationData.endDate),
-            reservationData.carId,
-            reservationData.pickupLocationId,
-            reservationData.dropoffLocationId,
-            Number(localStorage.getItem("userId"))),
-            getConfig
-        )
+        const result = await reserve(makeReservationDto, config)
         if (result) {
             navigate("/thanks", { state: { confirmedReservation: pickupLocation, confirmedDate: reservationData.startDate } })
         }
@@ -63,6 +56,7 @@ const Summary = () => {
                 <Navbar />
                 <div style={{ display: "flex", justifyContent: "center" }}>
                     <Card title="Summary">
+                        <p>Car: {car?.make} {car?.model} {car?.kind} {car?.plateNumber}</p>
                         <p>Start date: {new Date(reservationData.startDate).toDateString()}</p>
                         <p>End date: {new Date(reservationData.endDate).toDateString()}</p>
                         <p>Pickup location: {pickupLocation?.name}</p>

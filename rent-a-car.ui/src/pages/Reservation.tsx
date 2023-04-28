@@ -52,7 +52,6 @@ const Reservation = () => {
             <div>
                 <Navbar />
                 <div style={{ display: "flex", justifyContent: "center" }}>
-
                     <Form
                         onFinish={async (values) => {
                             const dto: MakeReservationDto =
@@ -73,7 +72,6 @@ const Reservation = () => {
                         }
                         }
                     >
-
                         <h3>Rent a car</h3>
                         <Form.Item label="Start date" name="startDate">
                             <DatePicker showTime={false} />
