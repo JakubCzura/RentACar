@@ -10,7 +10,8 @@ Launching:
 5. Important! You may have to enable cors in your browser and need a proper extension to do it. This one helped me, otherwise there might occur an issue with sending requests.
 
 ![obraz](https://user-images.githubusercontent.com/76125047/235017129-f770d4d8-6b59-4e72-bf81-4c406003540d.png)
-7. That's all! Have a ball!
+
+6. That's all! Have a ball!
 
 Project expectations:
 1. Client pays for each day, for example May 12-14 is calculated as 3 days, I don't precise exact hour when a car is picked up and returned.
