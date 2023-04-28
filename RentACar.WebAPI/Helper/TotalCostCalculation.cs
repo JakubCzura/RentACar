@@ -2,6 +2,14 @@
 {
     public static class TotalCostCalculation
     {
+        /// <summary>
+        /// Calculates the cost of renting a car
+        /// </summary>
+        /// <param name="startDate">Date of picking up a car</param>
+        /// <param name="endDate">Date of returning a car</param>
+        /// <param name="dailyRate">Cost of renting a car for one day</param>
+        /// <returns>Whole cost of renting a car</returns>
+        /// <exception cref="ArgumentException"></exception>
         public static decimal Calculate(DateTime startDate, DateTime endDate, decimal dailyRate)
         {
             TimeSpan time = endDate - startDate;
