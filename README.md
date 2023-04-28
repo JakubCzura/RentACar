@@ -17,7 +17,7 @@ Project expectations:
 1. Client pays for each day, for example May 12-14 is calculated as 3 days, I don't precise exact hour when a car is picked up and returned.
 2. Project uses local database created with Entity Framework tools.
 3. When user is logged in, their id is stored in localstorage with information authenticated="true". It is just a simple solution by now, it's obvious that it should be implemented with JWT token. Password is hashed and stored in database.
-4. I created list of cars in database that are available. When the car is returned it's availability should be set to true, but by now I have just implemented renting a car and marking it as reserved.
+4. I created list of cars in database that are available to rent. When a car is returned it's availability should be set to true, but by now I have just implemented renting a car and marking it as reserved.
 5. Important feature is to return more friendly errors' messages to user interface as I use FluentValidation package to validate dto models. It should be implemented soon.
 
 Please text me if something goes wrong and there appear issues. 
