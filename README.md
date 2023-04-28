@@ -19,6 +19,7 @@ Project expectations:
 3. When user is logged in, their id is stored in localstorage with information authenticated="true". It is just a simple solution by now, it's obvious that it should be implemented with JWT token. Password is hashed and stored in database.
 4. I created list of cars in database that are available to rent. When a car is returned it's availability should be set to true, but by now I have just implemented renting a car and marking it as reserved.
 5. Important feature is to return more friendly errors' messages to user interface as I use FluentValidation package to validate dto models. It should be implemented soon.
+6. Let's say default currency is EUR. Client can pay with credit card and cash while receiving the car. There should be other currencies and mobile payment using the website but it's just a simple demo app.
 
 Please text me if something goes wrong and there appear issues. 
 
