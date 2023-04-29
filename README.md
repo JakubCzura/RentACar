@@ -3,7 +3,7 @@
 It is a web application to rent a car.
 
 Launching:
-The project runs on .NET 7
+The project runs on .NET 7 
 1. Download the project and unzip.
 2. Open solution RentACar.sln and launch project RentACar.WebAPI.
 3. Open directory rent-a-car.ui for example in VS Code.
